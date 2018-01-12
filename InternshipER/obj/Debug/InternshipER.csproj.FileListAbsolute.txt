@@ -37,3 +37,42 @@ c:\users\user\source\repos\InternshipER\InternshipER\obj\Debug\InternshipER.cspr
 c:\users\user\source\repos\InternshipER\InternshipER\obj\Debug\InternshipER.csproj.CoreCompileInputs.cache
 c:\users\user\source\repos\InternshipER\InternshipER\obj\Debug\InternshipER.dll
 c:\users\user\source\repos\InternshipER\InternshipER\obj\Debug\InternshipER.pdb
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\ApplicationInsights.config
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\InternshipER.dll.config
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\InternshipER.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\InternshipER.pdb
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Antlr3.Runtime.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\AspNet.ScriptManager.bootstrap.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.AI.Web.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.ApplicationInsights.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Newtonsoft.Json.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\System.Web.Optimization.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\WebGrease.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\System.Web.Optimization.xml
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Antlr3.Runtime.pdb
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Newtonsoft.Json.xml
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.ApplicationInsights.xml
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\Microsoft.AI.Web.xml
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\tr\System.Web.Optimization.resources.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\bin\tr\Microsoft.AspNet.FriendlyUrls.resources.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\obj\Debug\InternshipER.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\obj\Debug\InternshipER.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\obj\Debug\InternshipER.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\InternshipER\InternshipER\obj\Debug\InternshipER.pdb

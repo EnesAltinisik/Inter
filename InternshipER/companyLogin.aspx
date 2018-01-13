@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="companyLogin.aspx.cs" Inherits="InternshipER.companyLogin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <style>
 body {font-family: Arial;}
 * {box-sizing: border-box}

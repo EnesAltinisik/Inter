@@ -13,14 +13,5 @@ namespace InternshipER
         {
 
         }
-        protected void cancelbtn_Click(object sender, EventArgs e)
-        {
-            // do something
-        }
-        protected void signupbtn_Click(object sender, EventArgs e)
-        {
-            
-            // do something
-        }
     }
 }

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using InternshipER.App_Code;
 
 namespace InternshipER
 {
@@ -12,7 +13,17 @@ namespace InternshipER
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Submit1.Click += registerClick_Event;
             Page.Title = "Giriş Ekranı";
+
         }
+        protected void registerClick_Event(object sender, EventArgs e)
+        {
+            Submit1.Text = "Deneme";
+            Response.Write("<script>alert('Data inserted successfully')</script>");
+
+            Database.registerFirstStep(username.Value, password.Value, email.Value);
+        }
+
     }
 }

@@ -24,10 +24,10 @@
                             <div class="col-lg-12">
                                 <form id="loginForm" role="form" style="display: block;">
                                     <div class="form-group">
-                                        <input type="text" name="login-username" id="login-username" tabindex="1" class="form-control" placeholder="Kullanıcı Adı" value="">
+                                        <input type="text" name="login-username" id="loginUsername" tabindex="1" class="form-control" placeholder="Kullanıcı Adı" value="" runat="server">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="login-password" id="login-password" tabindex="2" class="form-control" placeholder="Şifre">
+                                        <input type="password" name="login-password" id="loginPassword" tabindex="2" class="form-control" placeholder="Şifre" runat="server">
                                     </div>
                                     <div class="form-group text-center">
                                         <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
@@ -36,7 +36,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Giriş Yap">
+                                                <input type="submit" name="login-submit" id="loginSubmit" tabindex="4" class="form-control btn btn-login" value="Giriş Yap">
                                             </div>
                                         </div>
                                     </div>
@@ -52,16 +52,16 @@
                                 </form>
                                 <form id="registerForm" style="display: none;">
                                     <div class="form-group">
-                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Kullancı Adı" value="" runat="server">
+                                        <asp:TextBox type="text" AutoPostBack="True" ID="username" TabIndex="1" class="form-control" placeholder="Kullancı Adı" value="" runat="server" UseSubmitBehavior="False" CausesValidation="False"></asp:TextBox>
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="email" id="email" tabindex="2" class="form-control" placeholder="Email Adresi" value="" runat="server">
+                                        <asp:TextBox type="email" AutoPostBack="True" ID="email" TabIndex="2" class="form-control" placeholder="Email Adresi" value="" runat="server" UseSubmitBehavior="False" CausesValidation="False"></asp:TextBox>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password" id="password" tabindex="3" class="form-control" placeholder="Şifre" runat="server">
+                                        <asp:TextBox type="password" AutoPostBack="True" ID="password" TabIndex="3" class="form-control" placeholder="Şifre" runat="server" UseSubmitBehavior="False" CausesValidation="False"></asp:TextBox>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="confirm-password" id="confirmPassword" tabindex="4" class="form-control" placeholder="Şifre Tekrarı" runat="server">
+                                        <asp:TextBox type="password" AutoPostBack="True" ID="confirmPassword" TabIndex="4" class="form-control" placeholder="Şifre Tekrarı" runat="server" UseSubmitBehavior="False" CausesValidation="False"></asp:TextBox>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">

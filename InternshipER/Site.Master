@@ -15,7 +15,7 @@
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <link rel="stylesheet" type="text/css" href="Content/fontawesome.min.css">
 </head>
 <body>
     <form runat="server">
@@ -80,6 +80,29 @@
                 </div>
             </div>
         </nav>
+        <script src="Scripts/WebForms/Home.js"></script>
+        <link rel="stylesheet" type="text/css" href="Content/Home.css">
+            <div class="col-md-3 col-sm-4 sidebar3">
+                <div class="left-navigation">
+                    <ul>
+                        <li><i class="fa fa-book" aria-hidden="true"></i>Profil</li>
+                        <li><i class="fa fa-bookmark-o" aria-hidden="true"></i>Mesaj Kutusu <span class="mailbox pull-right">3</span></li>
+                        <li><i class="fa fa-trophy" aria-hidden="true"></i>Arama</li>
+                        <li><i class="fa fa-users" aria-hidden="true"></i>Değerlendirmeler</li>
+
+                    </ul>
+                    <ul class="category">
+                        <li><i class="fa fa-circle-thin" aria-hidden="true"></i>Favoriler</li>
+
+                    </ul>
+                    <ul>
+                        <li><i class="fa fa-cog" aria-hidden="true"></i>Ayarlar</li>
+                        <li><i class="fa fa-power-off" aria-hidden="true"></i>Çıkış</li>
+                    </ul>
+                </div>
+            </div>
+     
+            <!-- End of side bar-->
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>

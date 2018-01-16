@@ -13,13 +13,31 @@ namespace InternshipER {
     public partial class login {
         
         /// <summary>
+        /// loginUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText loginUsername;
+        
+        /// <summary>
+        /// loginPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword loginPassword;
+        
+        /// <summary>
         /// username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText username;
+        protected global::System.Web.UI.WebControls.TextBox username;
         
         /// <summary>
         /// email control.
@@ -28,7 +46,7 @@ namespace InternshipER {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl email;
+        protected global::System.Web.UI.WebControls.TextBox email;
         
         /// <summary>
         /// password control.
@@ -37,7 +55,7 @@ namespace InternshipER {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword password;
+        protected global::System.Web.UI.WebControls.TextBox password;
         
         /// <summary>
         /// confirmPassword control.
@@ -46,7 +64,7 @@ namespace InternshipER {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword confirmPassword;
+        protected global::System.Web.UI.WebControls.TextBox confirmPassword;
         
         /// <summary>
         /// Submit1 control.

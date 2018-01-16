@@ -13,16 +13,16 @@ namespace InternshipER
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Submit1.Click += registerClick_Event;
-            Page.Title = "Giriş Ekranı";
-
+            if (!IsPostBack)
+            {
+                Page.Title = "Giriş Ekranı";
+            }
         }
         protected void registerClick_Event(object sender, EventArgs e)
         {
-            Submit1.Text = "Deneme";
+            Submit1.Text = username.Text;
             Response.Write("<script>alert('Data inserted successfully')</script>");
-
-            Database.registerFirstStep(username.Value, password.Value, email.Value);
+            Database.registerFirstStep(loginUsername.Value, password.Text, email.Text);
         }
 
     }

@@ -13,5 +13,9 @@ namespace InternshipER
         {
 
         }
+        protected void getCompanyInfo(int user_id)
+        {
+
+        }
     }
 }

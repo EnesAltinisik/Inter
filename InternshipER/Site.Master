@@ -82,7 +82,7 @@
         </nav>
         <script src="Scripts/WebForms/Home.js"></script>
         <link rel="stylesheet" type="text/css" href="Content/Home.css">
-            <div class="col-md-3 col-sm-3 sidebar3">
+            <div class="col-md-2 col-sm-2 sidebar3">
                 <div class="left-navigation">
                     <ul>
                         <li><i class="fa fa-book" aria-hidden="true"></i>Profil</li>

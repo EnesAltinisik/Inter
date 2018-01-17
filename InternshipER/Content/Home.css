@@ -4,15 +4,15 @@
 }
 
 body {
-    background: #4143A3;
+    background: #28bab2;
     /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left top, #96f4aa, #96f4c2, #96f4df, #96f4e8,#96edf4);
+    background: -webkit-linear-gradient(left top, #d5ff87, #b6ff87, #a1ff79, #82ff59,#cdff5a);
     /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(bottom right, #96f4aa, #96f4c2, #96f4df, #96f4e8,#96edf4);
+    background: -o-linear-gradient(bottom right, #d5ff87, #b6ff87, #a1ff79, #82ff59,#cdff5a);
     /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(bottom right, #96f4aa, #96f4c2, #96f4df, #96f4e8,#96edf4);
+    background: -moz-linear-gradient(bottom right, #d5ff87, #b6ff87, #a1ff79, #82ff59,#cdff5a);
     /* For Firefox 3.6 to 15 */
-    background: linear-gradient( to bottom right, #96f4aa, #96f4c2, #96f4df, #96f4e8,#96edf4);
+    background: linear-gradient( to bottom right, #d5ff87, #b6ff87, #a1ff79, #82ff59,#cdff5a);
     /* Standard syntax */
     height: 100vh;
     color: #36006f;
@@ -123,3 +123,23 @@ li:hover {
     .main-content > p > a {
         color: #36006f;
     }
+.grid-divider {
+    position: relative;
+    padding: 0;
+}
+
+    .grid-divider > [class*='col-'] {
+        position: static;
+    }
+
+        .grid-divider > [class*='col-']:nth-child(n+2):before {
+            content: "";
+            border-left: 1px solid #DDD;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+        }
+
+.col-padding {
+    padding: 0 15px;
+}

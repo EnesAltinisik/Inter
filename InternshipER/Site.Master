@@ -82,7 +82,7 @@
         </nav>
         <script src="Scripts/WebForms/Home.js"></script>
         <link rel="stylesheet" type="text/css" href="Content/Home.css">
-            <div class="col-md-3 col-sm-4 sidebar3">
+            <div class="col-md-3 col-sm-3 sidebar3">
                 <div class="left-navigation">
                     <ul>
                         <li><i class="fa fa-book" aria-hidden="true"></i>Profil</li>
@@ -103,7 +103,7 @@
             </div>
      
             <!-- End of side bar-->
-        <div class="container body-content">
+        <div class="col-md-9 col-sm-9 sidebar3">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <asp:ContentPlaceHolder ID="LoginContent" runat="server">

@@ -7,7 +7,9 @@
 // </otomatik üretildi>
 //------------------------------------------------------------------------------
 
-
-
-public partial class  {
+namespace InternshipER {
+    
+    
+    public partial class _Default {
+    }
 }

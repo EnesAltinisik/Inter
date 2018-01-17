@@ -1,0 +1,167 @@
+﻿.section-about .profile {
+    padding: 33px 33px 22px;
+}
+
+.img-profile {
+    display: block;
+    width: 100%;
+    box-shadow: 0 0 5px rgba(0,0,0,.4);
+}
+
+.section-about .download-resume {
+    margin-bottom: 25px;
+    padding: 17px 5px;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0,0,0,.4);
+    transition: all .3s;
+}
+
+.section-about .available {
+    text-align: center;
+}
+
+.section-about h2 {
+    padding-bottom: 4px;
+}
+
+f1febac….css:14 .section h2, .section-about .download-resume {
+    font-family: Oswald,sans-serif;
+}
+
+f1febac….css:14 .section h2, .section-pricing .pricing-price .number {
+    font-size: 40px;
+}
+
+f1febac….css:14 .section h2 {
+    display: inline-block;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.section-about h3 {
+    padding-bottom: 20px;
+}
+
+f1febac….css:14 .section h3 {
+    font-size: 20px;
+}
+
+.section-about p {
+    padding-bottom: 27px;
+}
+
+f1febac….css:14 .section p {
+    line-height: 28px;
+}
+
+ul {
+    list-style: none;
+}
+
+.section-about .li-info {
+    padding-bottom: 10px;
+}
+
+section-about .title-info {
+    width: 65px;
+}
+
+.content {
+    font-family: 'PT Sans Narrow',sans-serif;
+    font-size: 16px;
+}
+
+.section-about .title-info {
+    display: inline-block;
+    width: 80px;
+}
+
+.section-about .photo-profile {
+    margin-bottom: 20px;
+}
+
+    .section-about .photo-profile img {
+        display: block;
+        width: 100%;
+        box-shadow: 0 0 5px rgba(0,0,0,.4);
+    }
+
+f1febac….css:5 img {
+    vertical-align: middle;
+}
+
+f1febac….css:5 img {
+    border: 0;
+}
+
+.section h2, .section-about .available i, .section-blog .blog-detail ul, .section-contact-us h3, .section-experience .specialty-name, .section-skills .other-skills i, .section-testimonials h3, .single-blog .archive h3, .single-blog .comments .name, .single-blog .comments h3, .single-blog .leave-comment h3, .single-blog .load-more-comments h3, .single-blog .populaire-posts h3, .single-blog .tags h3 {
+    color: #0487cc;
+}
+
+f1febac….css:14 .section-about h2 {
+    padding-bottom: 4px;
+}
+
+f1febac….css:14 .section h2, .section-about .download-resume {
+    font-family: Oswald,sans-serif;
+}
+
+f1febac….css:14 .section h2, .section-pricing .pricing-price .number {
+    font-size: 40px;
+}
+
+f1febac….css:14 .section h2 {
+    display: inline-block;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.section-about .ul-social-links {
+    margin-top: 10px;
+}
+
+.section-about .li-social-links {
+    display: inline-block;
+    margin: 0 5px 12px;
+}
+
+    .section-about .li-social-links a {
+        border: 1px solid #757575;
+    }
+
+    .section-about .li-social-links a {
+        display: inline-block;
+        width: 34px;
+        height: 34px;
+        line-height: 34px;
+        text-align: center;
+        transition: all .2s;
+    }
+
+    .section-about .li-social-links a, .section-blog .blog-detail .ul-detail, .section-blog .load-more span, .section-blog .read-more, .section-blog h4, .section-pricing .most-populaire span, .single-blog .populaire-posts ul {
+        font-size: 14px;
+    }
+
+.container .jumbotron, .container-fluid .jumbotron {
+    margin-top: 60px;
+}
+
+.section h2, .section-pricing .pricing-price .number {
+    font-size: 40px;
+}
+
+.section h2 {
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+a {
+    color: #0487cc;
+    text-decoration: none;
+}
+
+.jumbotron p {
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 200;
+}

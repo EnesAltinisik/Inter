@@ -1,112 +1,103 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="student.aspx.cs" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <!DOCTYPE html> 
-<style> 
-body {font-family: Arial;} 
-* {box-sizing: border-box}
- 
-/* Full-width input fields */ 
-input[type=text], input[type=password] { 
-    width: 100%; 
-    padding: 15px; 
-    margin: 5px 0 22px 0; 
-    display: inline-block; 
-    border: none; 
-    background: #f1f1f1; 
-} 
- 
-input[type=text]:focus, input[type=password]:focus { 
-    background-color: #ddd; 
-    outline: none; 
-} 
- 
-hr { 
-    border: 1px solid #f1f1f1; 
-    margin-bottom: 25px; 
-} 
- 
-/* Set a style for all buttons */ 
-button { 
-    background-color: #4CAF50; 
-    color: white; 
-    padding: 14px 20px; 
-    margin: 8px 0; 
-    border: none; 
-    cursor: pointer; 
-    width: 100%; 
-    opacity: 0.9; 
-} 
- 
-button:hover { 
-    opacity:1; 
-} 
- 
-/* Extra styles for the cancel button */ 
-.cancelbtn { 
-    padding: 14px 20px; 
-    background-color: #f44336; 
-} 
- 
-/* Float cancel and signup buttons and add an equal width */ 
-.cancelbtn, .signupbtn { 
-  float: left; 
-  width: 50%; 
-} 
- 
-/* Add padding to container elements */ 
-.container { 
-    padding: 16px; 
-} 
- 
-/* Clear floats */ 
-.clearfix::after { 
-    content: ""; 
-    clear: both; 
-    display: table; 
-} 
- 
-/* Change styles for cancel button and signup button on extra small screens */ 
-@media screen and (max-width: 100px) { 
-    .cancelbtn, .signupbtn { 
-       width: 100%; 
-    } 
-} 
-</style> 
- 
-  <div class="container"> 
-    <h1>Sign Up</h1> 
-    <p>Please fill in this form to create a student account for any user.</p> 
-    <hr> 
- 
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="student.aspx.cs" Inherits="InternshipER._Default" %>
+
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     
-    <p> 
-    <label><b>User Name</b></label> 
-        </p> 
-    <p><input type="text" placeholder="Enter User Name" name="userName" required> 
-        </p> 
-    <p> 
-    <label><b>Email</b></label> 
-        </p> 
-    <p><input type="text" placeholder="Enter Email" name="email" required> 
-        </p> 
-    <p> 
-    <label><b>Password</b></label></p> 
-    <p><input type="password" placeholder="Enter Password" name="psw" required> 
-        </p> 
-    <p> 
-    <label><b>Repeat Password</b></label></p> 
-    <p><input type="password" placeholder="Repeat Password" name="psw-repeat" required> 
-        </p> 
-    <label> 
-      <input type="checkbox" checked="checked" style="margin-bottom:15px"> Remember me 
-    </label> 
-     
-    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p> 
- 
-    <div class="clearfix"> 
-      <button type="button" onclick="cancelbtn_Click" class="cancelbtn">Cancel </button> 
-      <button type="submit" onclick="signupbtn_Click" class="signupbtn">Sign Up</button> 
-    </div> 
-  </div> 
- 
-</asp:Content> 
+    <link rel="stylesheet" type="text/css" href="Content/Student.css">
+   <script src="https://use.fontawesome.com/bfdd1d98a1.js"></script>
+<div class="container">
+	<div class="row">
+		<section id="about" class="section section-about wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+					<div class="profile">
+						<div class="row">
+							<div class="col-sm-3">
+								<div class="photo-profile">
+									<img id="img-profile" src="img/logo2.png">
+								</div>
+								<a href="cv/cv-1.pdf" target="cv">
+									<div class="download-resume">
+										<i class="fa fa-check" aria-hidden="true"></i>
+										<span class="text-download">DOWNLOAD RESUME</span>
+									</div>
+								</a>
+								<div class="available">
+									<i class="fa fa-check" aria-hidden="true"></i>
+									<span class="text-available">available on freelance</span>
+								</div>
+							</div>
+							<div class="col-sm-8">
+								<div class="info-profile">
+									<h2><span>HI I'M</span> InternsiphEr</h2>
+									<h3>web developer & web designer</h3>
+									<p align="justify">Hello! I’m INternshiphER. Pointer project.</p>
+									<div class="row">
+										<div class="col-sm-6">
+											<ul class="ul-info">
+												<li class="li-info">
+													<span class="title-info">Age</span>
+													<span class="info">31</span>
+												</li>
+												<li class="li-info">
+													<span class="title-info">Address</span>
+													<span class="info">Ankara, Turkey</span>
+												</li>
+												<li class="li-info">
+													<span class="title-info">Email</span>
+													<span class="info">xxx@yahoo.com</span>
+												</li>
+											</ul>
+										</div>
+										<div class="col-sm-6">
+											<ul class="ul-info">
+												<li class="li-info">
+													<span class="title-info">Phone</span>
+													<span class="info">+966 531 184 434</span>
+												</li>
+												<li class="li-info">
+													<span class="title-info">Website</span>
+													<span class="info">www.shineblue.com</span>
+												</li>
+												<li class="li-info">
+													<span class="title-info">Nationality</span>
+													<span class="info">Turkey</span>
+												</li>
+											</ul>
+										</div>
+										<div class="col-sm-12">
+											<span class="title-links">Social Links</span>
+											<ul class="ul-social-links">
+												<li class="li-social-links">
+													<a href="www.facebook.com/shineblue30" data-tootik="Facebook" data-tootik-conf="square"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+												</li>
+												<li class="li-social-links">
+													<a href="www.twitter.com/shineblue30" data-tootik="Twitter" data-tootik-conf="square"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+												</li>
+												<li class="li-social-links">
+													<a href="#" data-tootik="Google Plus" data-tootik-conf="square"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+												</li>
+												<li class="li-social-links">
+													<a href="https://www.linkedin.com/in/shineblue30/" data-tootik="Linkedin" data-tootik-conf="square"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+												</li>
+												<li class="li-social-links">
+													<a href="#" data-tootik="Dribbble" data-tootik-conf="square"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+												</li>
+												<li class="li-social-links">
+													<a href="#" data-tootik="Pinterest" data-tootik-conf="square"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+												</li>
+												<li class="li-social-links">
+													<a href="#" data-tootik="Vimeo" data-tootik-conf="square"><i class="fa fa-vimeo" aria-hidden="true"></i></a>
+												</li>
+												<li class="li-social-links">
+													<a href="#" data-tootik="Behance" data-tootik-conf="square"><i class="fa fa-behance" aria-hidden="true"></i></a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+	</div>
+</div>
+</asp:Content>

@@ -17,6 +17,8 @@ namespace InternshipER.App_Code
 {
     public class Database
     {
+        public static SqlConnection _productConn { get; private set; }
+
         public static NpgsqlConnection connect()
         {
             String connectionString = ConfigurationManager.ConnectionStrings["internshiper"].ConnectionString;
@@ -135,5 +137,27 @@ namespace InternshipER.App_Code
             }
             return cipherText;
         }
+
+        public static List<string> companyInfo(string userId)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT description,name,email,address,telephone,website FROM company_details WHERE user_id = @Id"))
+                {
+                    List<string> infos = new List<string>();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Id", userId);
+                    con.Open();
+                    NpgsqlDataReader values = cmd.ExecuteReader();
+                    while (values.Read())
+                    {
+                        infos.Add(values.GetString(0));
+                    }
+                    con.Close();
+                    return infos;
+                }
+            }
+        }
+
     }
 }

@@ -27,7 +27,7 @@ namespace InternshipER.App_Code
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT count(*) users WHERE (email = @Id OR username = @Id) AND password = @Password"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT count(*) FROM users WHERE (email = @Id OR username = @Id) AND password = @Password"))
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@Id", id);
@@ -41,8 +41,9 @@ namespace InternshipER.App_Code
                 }
             }
         }
-        public static void registerFirstStep(String username,String password,String email)
+        public static void registerCompany(string companyName, String username,String password,String email)
         {
+            int user_id;
             using (NpgsqlConnection con = connect())
             {
                 using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO users (username, email, password) VALUES(@Username, @Email, @Password)"))
@@ -57,7 +58,40 @@ namespace InternshipER.App_Code
                     con.Close();
                 }
             }
-            
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT user_id FROM users WHERE username = @Id AND password = @Password"))
+                {
+
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Id",username);
+                    cmd.Parameters.AddWithValue("@Password", Encrypt(password));
+                    cmd.Connection = con;
+                    con.Open();
+                    user_id= int.Parse(cmd.ExecuteScalar().ToString());
+                    con.Close();
+                    
+                }
+            }
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO company_details (user_id,name, email,address,telephone,website) VALUES(@User_id,@Name,@Email,@Address,@Telephone,@Website)"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@User_id", user_id);
+                    cmd.Parameters.AddWithValue("@Name", companyName);
+                    cmd.Parameters.AddWithValue("@Email","");
+                    cmd.Parameters.AddWithValue("@Address", "");
+                    cmd.Parameters.AddWithValue("@Telephone","");
+                    cmd.Parameters.AddWithValue("@Website","");
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                   
+                }
+            }
+
         }
         private static String Encrypt(string clearText)
         {

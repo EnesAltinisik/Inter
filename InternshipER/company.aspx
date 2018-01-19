@@ -66,7 +66,7 @@
                                         <i class="fa fa-check" aria-hidden="true"></i>
                                         <span class="text-available">Onaylanmış Profil</span>
                                     </div>
-                                    <a href="cv/cv-1.pdf" target="cv">
+                                    <a data-toggle="modal" data-target="#myModal2">
                                         <div class="download-resume">
                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                             <span class="text-download">YENİ İLAN</span>
@@ -166,6 +166,56 @@
                 </div>
                 <div class="modal-footer">
                             <a href="#" class="btn btn-primary">Kaydet</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--YENİ İLAN-->
+    <script src="Scripts/WebForms/Company.js"></script>
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel2">İŞ İLANI</h4>
+                </div>
+                <div class="modal hide" id="myModal2">
+
+                    <button type="button" class="close" data-dismiss="modal">x</button>
+                    <h3>Login to MyWebsite.com</h3>
+                </div>
+                <div class="modal-body" align="center">
+                    <form method="post" action='' name="login_form" align="center">
+                       
+                        <div class="form-group">
+                            <label for="comment">Başlık:</label>
+                            <textarea runat="server" class="form-control" rows="5" id="Textarea1"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="usr">İş Açıklaması:</label>
+                            <input type="text" runat="server" class="form-control" id="Text3">
+                        </div>
+                        <div class="form-group">
+                            <label for="usr">İş Statüsü:</label>
+                            <input type="text" runat="server" class="form-control" id="Text4">
+                        </div>
+                        <div class="form-group">
+                            <label for="usr">Adres:</label>
+                            <input type="text" runat="server" class="form-control" id="Text5">
+                        </div>                        
+                        <div class="form-group">
+                            <span class="form-group-btn">
+                                <span class="fa fa-plus">Logo&hellip;
+                                    <input type="file" single>
+                                </span>
+                            </span>
+                            <input type="text" runat="server" id="Text7" class="form-control" readonly>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                            <a href="#" class="fa fa-plus">Kaydet</a>
                 </div>
             </div>
         </div>

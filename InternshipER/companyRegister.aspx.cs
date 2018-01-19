@@ -20,5 +20,9 @@ namespace InternshipER
             Response.Write("<script>alert('Data inserted successfully')</script>");
             Database.registerCompany(companyName.Value, userName.Value, psw.Value, email.Value);
         }
+        protected void cancelbtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("login.aspx");
+        }
     }
 }

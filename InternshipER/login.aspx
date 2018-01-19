@@ -27,7 +27,7 @@
                                         <input type="text" name="login-username" id="loginUsername" tabindex="1" class="form-control" placeholder="Kullanıcı Adı" value="" runat="server">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="login-password" id="loginPassword" tabindex="2" class="form-control" placeholder="Şifre" runat="server">
+                                        <input type="password" name="login-password" id="loginPassword" tabindex="2" class="form-control" placeholder="Şifre" value="" runat="server">
                                     </div>
                                     <div class="form-group text-center">
                                         <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
@@ -36,7 +36,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" name="login-submit" id="loginSubmit" tabindex="4" class="form-control btn btn-login" value="Giriş Yap">
+                                                <asp:Button type="submit" runat="server" name="login-submit" id="loginSubmit" onclick="loginClick_Event" causesvalidation="False" ondatabinding="loginClick_Event" usesubmitbehavior="False" tabindex="4" class="form-control btn btn-login" Text="Giriş Yap"></asp:button>
                                             </div>
                                         </div>
                                     </div>
@@ -66,7 +66,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3">
-                                                <asp:Button runat="server" ID="Submit1" class="form-control btn btn-register" Text="Kayıt Ol" OnClick="registerClick_Event" CausesValidation="False" OnDataBinding="registerClick_Event" UseSubmitBehavior="False"></asp:Button>
+                                                <asp:Button runat="server" ID="Submit1" class="form-control btn btn-register" Text="Kayıt Ol"></asp:Button>
                                             </div>
                                         </div>
                                     </div>

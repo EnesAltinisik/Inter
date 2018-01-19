@@ -38,11 +38,31 @@ namespace InternshipER.App_Code
                     con.Open();
                     int count = int.Parse(cmd.ExecuteScalar().ToString());
                     con.Close();
-                    if (count == 1) return true;
+                    if (count >0) return true;
                     else return false;             
                 }
             }
         }
+        public static int getUserId(String username, String password)
+        {
+            int user_id;
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT user_id FROM users WHERE username = @Id AND password = @Password"))
+                {
+
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Id", username);
+                    cmd.Parameters.AddWithValue("@Password", Encrypt(password));
+                    cmd.Connection = con;
+                    con.Open();
+                    user_id = int.Parse(cmd.ExecuteScalar().ToString());
+                    con.Close();
+                }
+            }
+            return user_id;
+        }
+            
         public static void registerCompany(string companyName, String username,String password,String email)
         {
             int user_id;
@@ -60,24 +80,10 @@ namespace InternshipER.App_Code
                     con.Close();
                 }
             }
+            user_id = getUserId(username, password);
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT user_id FROM users WHERE username = @Id AND password = @Password"))
-                {
-
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@Id",username);
-                    cmd.Parameters.AddWithValue("@Password", Encrypt(password));
-                    cmd.Connection = con;
-                    con.Open();
-                    user_id= int.Parse(cmd.ExecuteScalar().ToString());
-                    con.Close();
-                    
-                }
-            }
-            using (NpgsqlConnection con = connect())
-            {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO company_details (user_id,name, email,address,telephone,website) VALUES(@User_id,@Name,@Email,@Address,@Telephone,@Website)"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO company_details (user_id,name, email,address,telephone,website,title) VALUES(@User_id,@Name,@Email,@Address,@Telephone,@Website,@Title)"))
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@User_id", user_id);
@@ -86,6 +92,7 @@ namespace InternshipER.App_Code
                     cmd.Parameters.AddWithValue("@Address", "");
                     cmd.Parameters.AddWithValue("@Telephone","");
                     cmd.Parameters.AddWithValue("@Website","");
+                    cmd.Parameters.AddWithValue("@Title", "");
                     cmd.Connection = con;
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -137,15 +144,16 @@ namespace InternshipER.App_Code
             }
             return cipherText;
         }
-        public static List<string> companyInfo(string userId)
+        public static List<String> companyInfo(int userId)
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT description,name,email,address,telephone,website FROM company_details WHERE user_id = @Id"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT description,name,email,address,telephone,website,title FROM company_details WHERE user_id = @Id"))
                 {
                     List<string> infos = new List<string>();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Id", userId);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Id", userId.ToString());
+                    cmd.Connection = con; 
                     con.Open();
                     NpgsqlDataReader values = cmd.ExecuteReader();
                     while (values.Read())

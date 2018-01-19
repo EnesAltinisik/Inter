@@ -4,42 +4,41 @@
  <link rel="stylesheet" type="text/css" href="Content/Register.css">
 
   <div class="container">
-    <h1>Sign Up</h1>
-    <p>Please fill in this form to create an company account for any user.</p>
+    <h1>Firma Kayıt Formu</h1>
+    <p>Bütün bilgiler zorunludur.</p>
     <hr>
 
     <p>
-    <label><b>Company name</b></label>
+    <label><b>Firma İsmi</b></label>
         </p>
-    <p><input type="text" runat="server" placeholder="Enter Comapny Name" id="companyName" required>
+    <p><input type="text" runat="server"  id="companyName" required>
     </p>
     <p>
-    <label><b>User Name</b></label>
+    <label><b>Kullanıcı Adı</b></label>
         </p>
-    <p><input type="text" runat="server" placeholder="Enter User Name" id="userName" required>
+    <p><input type="text" runat="server"  id="userName" required>
         </p>
     <p>
     <label><b>Email</b></label>
         </p>
-    <p><input type="text" runat="server" placeholder="Enter Email" id="email" required>
+    <p><input type="text" runat="server" id="email" required>
         </p>
     <p>
-    <label><b>Password</b></label></p>
-    <p><input type="password" runat="server" placeholder="Enter Password" id="psw" required>
+    <label><b>Şifre</b></label></p>
+    <p><input type="password" runat="server" id="psw" required>
         </p>
     <p>
-    <label><b>Repeat Password</b></label></p>
-    <p><input type="password" runat="server" placeholder="Repeat Password" id="pswRepeat" required>
+    <label><b>Şifre Tekrarı</b></label></p>
+    <p><input type="password" runat="server"  id="pswRepeat" required>
         </p>
     <label>
       <input type="checkbox" checked="checked" style="margin-bottom:15px"> Remember me
     </label>
     
-    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
     <div class="clearfix">
-      <button type="button" onclick="cancelbtn_Click" class="cancelbtn">Cancel </button>
-      <button type="submit" runat="server" onclick ="registerClick_Event" class="signupbtn">Sign Up</button>
+      <asp:Button type="button" runat="server" OnClick="cancelbtn_Click" class="cancelbtn" Text="Vazgeç" CausesValidation="False" OnDataBinding="cancelbtn_Click"></asp:button>
+      <asp:button type="submit" runat="server" onclick ="registerClick_Event" class="signupbtn" Text="Kayıt Ol" CausesValidation="False" OnDataBinding="registerClick_Event"></asp:button>
     </div>
   </div>
 

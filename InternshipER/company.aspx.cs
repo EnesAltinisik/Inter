@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using InternshipER.App_Code;
 
 namespace InternshipER
 {
@@ -11,11 +12,27 @@ namespace InternshipER
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            int user_id;
+            try
+            {
+                user_id= int.Parse(Request.QueryString["UserId"]);
+            }
+            catch (Exception ex)
+            {
+                user_id = int.Parse(Session["id"].ToString());
+            }
+            getCompanyInfo(user_id);
         }
         protected void getCompanyInfo(int user_id)
         {
-
+            List<String> infos = Database.companyInfo(user_id);
+            description.Text = infos[0];
+            name.Text = infos[1];
+            email.Text = infos[2];
+            address.Text = infos[3];
+            tel.Text = infos[4];
+            website.Text = infos[5];
+            title.Text = infos[6];
         }
     }
 }

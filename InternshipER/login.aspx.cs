@@ -17,6 +17,19 @@ namespace InternshipER
             {
                 Page.Title = "Giriş Ekranı";
             }
+
+        }
+        protected void loginClick_Event(object sender, EventArgs e)
+        {
+            if (Database.loginAttempt(loginUsername.Value, loginPassword.Value) == true)
+            {
+                Session["id"] = Database.getUserId(loginUsername.Value, loginPassword.Value);
+                Response.Redirect("home.aspx");
+            }
+            else
+            {
+                Response.Write("<script>alert('Giriş Bilgilerini kontrol ediniz!')</script>");
+            }
         }
 
     }

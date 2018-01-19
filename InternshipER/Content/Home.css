@@ -6,13 +6,13 @@
 body {
     background: #28bab2;
     /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left top, #d5ff87, #b6ff87, #a1ff79, #82ff59,#cdff5a);
+    background: -webkit-linear-gradient(left top, #f9d5d5, #e9d5d5, #d9d5d5, #c9d5d5,#b9d5d5);
     /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(bottom right, #d5ff87, #b6ff87, #a1ff79, #82ff59,#cdff5a);
+    background: -o-linear-gradient(bottom right, #f9d5d5, #e9d5d5, #d9d5d5, #c9d5d5,#b9d5d5);
     /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(bottom right, #d5ff87, #b6ff87, #a1ff79, #82ff59,#cdff5a);
+    background: -moz-linear-gradient(bottom right, #f9d5d5, #e9d5d5, #d9d5d5, #c9d5d5,#b9d5d5);
     /* For Firefox 3.6 to 15 */
-    background: linear-gradient( to bottom right, #d5ff87, #b6ff87, #a1ff79, #82ff59,#cdff5a);
+    background: linear-gradient( to bottom right, #f9d5d5, #e9d5d5, #d9d5d5, #c9d5d5,#b9d5d5);
     /* Standard syntax */
     height: 100vh;
     color: #36006f;

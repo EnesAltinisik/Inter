@@ -137,7 +137,6 @@ namespace InternshipER.App_Code
             }
             return cipherText;
         }
-
         public static List<string> companyInfo(string userId)
         {
             using (NpgsqlConnection con = connect())
@@ -158,6 +157,27 @@ namespace InternshipER.App_Code
                 }
             }
         }
+        public static void updateCompanyProfile(int userId,String companyName,String title, String website, String email, String description, String tel, String address)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("UPDATE company_details SET title=@Title,description=@Desc,name=@Name,email=@Email,address=@Address,telephone=@Tel,website=@Website WHERE user_id = @Id"))
+                {
+                    List<string> infos = new List<string>();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Desc", description);
+                    cmd.Parameters.AddWithValue("@Name", companyName);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Address", address);
+                    cmd.Parameters.AddWithValue("@Tel", tel);
+                    cmd.Parameters.AddWithValue("@Website", website);
+                    cmd.Parameters.AddWithValue("@Title", title);
 
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
     }
 }

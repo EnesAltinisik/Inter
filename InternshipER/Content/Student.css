@@ -23,7 +23,13 @@
 .section-about h2 {
     padding-bottom: 4px;
 }
-
+.profile-edit {
+    margin-bottom: 25px;
+    padding: 17px 5px;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0,0,0,.4);
+    transition: all .3s;
+}
 f1febac….css:14 .section h2, .section-about .download-resume {
     font-family: Oswald,sans-serif;
 }

@@ -140,6 +140,7 @@
     <Content Include="Content\Home.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\Register.css" />
+    <Content Include="Content\Search.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Student.css" />
     <Content Include="home.aspx" />

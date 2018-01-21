@@ -43,6 +43,8 @@ namespace InternshipER.App_Code
                 }
             }
         }
+
+
         public static int getUserId(String username, String password)
         {
             int user_id;
@@ -180,6 +182,58 @@ namespace InternshipER.App_Code
                     cmd.Parameters.AddWithValue("@Tel", tel);
                     cmd.Parameters.AddWithValue("@Website", website);
                     cmd.Parameters.AddWithValue("@Title", title);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+
+        public static List<String> studentInfo(int userId)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT adress, age, country, department, description, email, username, phone, website FROM users WHERE user_id = @Id"))
+                {
+                    List<string> infos = new List<string>();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Id", userId);
+                    cmd.Connection = con;
+                    con.Open();
+                    NpgsqlDataReader values = cmd.ExecuteReader();
+                    while(values.Read())
+                        for(int i=0;i<9;i++)
+                        {
+                            if (!values.IsDBNull(i))
+                                infos.Add(values.GetString(i));
+                            else
+                                infos.Add("");
+                        }
+                    con.Close();
+                    return infos;
+                }
+            }
+        }
+
+        internal static void updateStudenProfile(int id, string adress, string age, string country, string department, string description, string email, string name, string phone, string website)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("UPDATE users SET adress=@Adress, description=@Desc, username=@Name, email=@Email, age=@Age, phone=@Tel, website=@Website, country=@Country, department=@Department WHERE user_id = @Id",con))
+                {
+                    List<string> infos = new List<string>();
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Adress", adress);
+                    cmd.Parameters.AddWithValue("@Desc", description);
+                    cmd.Parameters.AddWithValue("@Name", name);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Age", age.ToString());
+                    cmd.Parameters.AddWithValue("@Tel", phone);
+                    cmd.Parameters.AddWithValue("@Website", website);
+                    cmd.Parameters.AddWithValue("@Country", country);
+                    cmd.Parameters.AddWithValue("@Department", department);
 
                     con.Open();
                     cmd.ExecuteNonQuery();

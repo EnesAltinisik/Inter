@@ -174,8 +174,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-primary">Kaydet</a>
+                <<div class="modal-footer">
+                    <asp:Button class="btn btn-primary" type="submit" runat="server" ID="submitSettings" OnClick="updateStudentProfile" CausesValidation="False" OnDataBinding="updateStudentProfile" UseSubmitBehavior="False" Text="Kaydet"></asp:Button>
                 </div>
             </div>
         </div>

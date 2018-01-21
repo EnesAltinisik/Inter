@@ -13,20 +13,19 @@ namespace InternshipER
         protected void Page_Load(object sender, EventArgs e)
         {
            
-            int user_id;
+            int user_id=1;
             try
             {
                 user_id = int.Parse(Request.QueryString["UserId"]);
             }
             catch (Exception ex)
             {
-                user_id = int.Parse(Session["id"].ToString());
             }
             setStudentInfo(user_id);
         }
         protected void setStudentInfo(int user_id)
         {
-            List<String> infos = Database.companyInfo(user_id);
+            List<String> infos = Database.studentInfo(user_id);
             studentAdress.Text = infos[0];
             studentAge.Text = infos[1];
             studentCountry.Text = infos[2];
@@ -36,6 +35,11 @@ namespace InternshipER
             studentName.Text = infos[6];
             studentPhone.Text = infos[7];
             studentWebsite.Text = infos[8];
+        }
+        protected void updateStudentProfile(object sender, EventArgs e)
+        {
+            Database.updateStudenProfile(int.Parse(Request.QueryString["UserId"]), studentAdressEdit.Value, studentAgeEdit.Value, studentCountryEdit.Value, studentDepartmentEdit.Value
+                , studentDescriptionEdit.Value,studentEmailEdit.Value, studentNameEdit.Value, studentPhoneEdit.Value, studentWebsiteEdit.Value);
         }
     }
 }

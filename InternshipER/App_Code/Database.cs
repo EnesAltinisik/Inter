@@ -155,26 +155,31 @@ namespace InternshipER.App_Code
                     List<string> infos = new List<string>();
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@Id", userId.ToString());
-                    cmd.Connection = con; 
+                    cmd.Connection = con;
                     con.Open();
                     NpgsqlDataReader values = cmd.ExecuteReader();
                     while (values.Read())
                     {
-                        infos.Add(values.GetString(0));
+                        infos.Add(values[0].ToString());
+                        infos.Add(values[1].ToString());
+                        infos.Add(values[2].ToString());
+                        infos.Add(values[3].ToString());
+                        infos.Add(values[4].ToString());
+                        infos.Add(values[5].ToString());
+                        infos.Add(values[6].ToString());
                     }
                     con.Close();
                     return infos;
                 }
             }
         }
-        public static void updateCompanyProfile(int userId,String companyName,String title, String website, String email, String description, String tel, String address)
+        public static void updateCompanyProfile(int userId, String companyName, String title, String website, String email, String description, String tel, String address)
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("UPDATE company_details SET title=@Title,description=@Desc,name=@Name,email=@Email,address=@Address,telephone=@Tel,website=@Website WHERE user_id = @Id"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("UPDATE company_details SET title=@Title,description=@Desc,name=@Name,email=@Email,address=@Address,telephone=@Tel,website=@Website WHERE user_id = @Id",con))
                 {
                     List<string> infos = new List<string>();
-                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Desc", description);
                     cmd.Parameters.AddWithValue("@Name", companyName);
                     cmd.Parameters.AddWithValue("@Email", email);
@@ -182,7 +187,7 @@ namespace InternshipER.App_Code
                     cmd.Parameters.AddWithValue("@Tel", tel);
                     cmd.Parameters.AddWithValue("@Website", website);
                     cmd.Parameters.AddWithValue("@Title", title);
-
+                    cmd.Parameters.AddWithValue("@Id", userId.ToString());
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
@@ -234,6 +239,26 @@ namespace InternshipER.App_Code
                     cmd.Parameters.AddWithValue("@Country", country);
                     cmd.Parameters.AddWithValue("@Department", department);
 
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+
+        public static void createNewJob(String userId, String jobTitle, String jobDesc, String jobLocation, bool jobStatus)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO jobs (user_id, job_title, description,location,status) VALUES(@user_id, @job_title, @description,@location,@status)"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+                    cmd.Parameters.AddWithValue("@job_title", jobTitle);
+                    cmd.Parameters.AddWithValue("@description", jobDesc);
+                    cmd.Parameters.AddWithValue("@location", jobLocation);
+                    cmd.Parameters.AddWithValue("@status", jobStatus);
+                    cmd.Connection = con;
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();

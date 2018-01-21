@@ -127,37 +127,36 @@
                 <div class="modal-body" align="center">
                     <div class="container">
                         <div class="row">
-                            <form method="post" action='' name="login_form" align="center">
                                 <div class="col-xs-6">
                                     <div class="form-group">
                                         <label for="usr">Şirket ismi:</label>
-                                        <input type="text" runat="server" class="form-control" id="companyName">
+                                        <input type="text" value="" runat="server" class="form-control" id="companyName">
                                     </div>
                                     <div class="form-group">
                                         <label for="usr">Alt başlık:</label>
-                                        <input type="text" runat="server" class="form-control" id="companyTitle">
+                                        <input type="text" value=""  runat="server" class="form-control" id="companyTitle">
                                     </div>
                                     <div class="form-group">
                                         <label for="comment">Firma Açıklama:</label>
-                                        <textarea runat="server" class="form-control" rows="5" id="companyDescription"></textarea>
+                                        <textarea runat="server" value=""  class="form-control" rows="5" id="companyDescription"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="usr">Adres:</label>
-                                        <input type="text" runat="server" class="form-control" id="companyAddress">
+                                        <input type="text" value=""  runat="server" class="form-control" id="companyAddress">
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="form-group">
                                         <label for="usr">Web Sitesi:</label>
-                                        <input type="text" runat="server" class="form-control" id="companyWebsite">
+                                        <input type="text" value="" runat="server" class="form-control" id="companyWebsite">
                                     </div>
                                     <div class="form-group">
                                         <label for="usr">Telefon:</label>
-                                        <input type="text" runat="server" class="form-control" id="companyPhone">
+                                        <input type="text" value="" runat="server" class="form-control" id="companyPhone">
                                     </div>
                                     <div class="form-group">
                                         <label for="usr">Email:</label>
-                                        <input type="text" runat="server" class="form-control" id="companyEmail">
+                                        <input type="text" value="" runat="server" class="form-control" id="companyEmail">
                                     </div>
                                     <div class="form-group">
                                         <span class="form-group-btn">
@@ -168,7 +167,6 @@
                                         <input type="text" runat="server" id="companyLogo" class="form-control" readonly>
                                     </div>
                                 </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -189,42 +187,37 @@
                 <div class="modal-body" align="center">
                     <div class="container">
                         <div class="row">
-                            <form method="post" action='' name="login_form" align="center">
-                                    <div class="col-xs-6">
-                                        <div class="form-group">
-                                            <label for="usr">Başlık</label>
-                                            <input type="text" runat="server" class="form-control" id="Text3">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="usr">İş Statüsü</label>
-                                            <input type="text" runat="server" class="form-control" id="Text4">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="comment">İş Açıklaması</label>
-                                            <textarea runat="server" class="form-control" rows="5" id="Textarea1"></textarea>
-                                        </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="usr">Başlık</label>
+                                        <input type="text" value="" runat="server" class="form-control" id="jobTitle">
                                     </div>
-                                    <div class="col-xs-6">
-                                        <div class="form-group">
-                                            <label for="usr">Adres</label>
-                                            <input type="text" runat="server" class="form-control" id="Text5">
-                                        </div>
-                                        <div class="form-group">
-                                            <span class="form-group-btn">
-                                                <span class="fa fa-plus">Logo&hellip;
+                                    <div class="form-group">
+                                        <label for="comment">İş Açıklaması</label>
+                                        <textarea runat="server" value="" class="form-control" rows="5" id="jobDesc"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="usr">Adres</label>
+                                        <input type="text" runat="server" value="" class="form-control" id="jobLocation">
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="form-group-btn">
+                                            <span class="fa fa-plus">Logo&hellip;
                                    
                                     <input type="file" single>
-                                                </span>
                                             </span>
-                                            <input type="text" runat="server" id="Text7" class="form-control" readonly>
-                                        </div>
+                                        </span>
+                                        <input type="text" runat="server" id="Text7" class="form-control" readonly>
                                     </div>
-                            </form>
+                                </div>
+                            
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="#" class="fa fa-plus">Kaydet</a>
+                    <asp:Button type="submit" runat="server" ID="SubmitChanges" OnClick="createNewJob" CausesValidation="False" OnDataBinding="createNewJob" UseSubmitBehavior="False" TabIndex="4" class="form-control btn btn-login" Text="Kaydet"></asp:Button>
                 </div>
             </div>
         </div>

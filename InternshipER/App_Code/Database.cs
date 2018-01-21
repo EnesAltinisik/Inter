@@ -1,4 +1,4 @@
-﻿using Npgsql;
+using Npgsql;
 using System;
 using System.Text;
 using System.Data;
@@ -224,7 +224,6 @@ namespace InternshipER.App_Code
                 {
                     List<string> infos = new List<string>();
                     cmd.Parameters.AddWithValue("@Id", id);
-                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Adress", adress);
                     cmd.Parameters.AddWithValue("@Desc", description);
                     cmd.Parameters.AddWithValue("@Name", name);

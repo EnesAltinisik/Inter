@@ -40,6 +40,7 @@ namespace InternshipER
         {
             Database.updateStudenProfile(int.Parse(Request.QueryString["UserId"]), studentAdressEdit.Value, studentAgeEdit.Value, studentCountryEdit.Value, studentDepartmentEdit.Value
                 , studentDescriptionEdit.Value,studentEmailEdit.Value, studentNameEdit.Value, studentPhoneEdit.Value, studentWebsiteEdit.Value);
+            setStudentInfo(int.Parse(Request.QueryString["UserId"]));
         }
     }
 }

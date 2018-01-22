@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Student Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="student.aspx.cs" Inherits="InternshipER.WebForm2" %>
+﻿<%@ Page Title="Student Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="student.aspx.cs" Inherits="InternshipER.studentForm" %>
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -66,6 +66,10 @@
 												<li class="li-info">
 													<span class="title-info">Ülke</span>
                                                      <asp:Label ID="studentCountry" runat="server" class="info" Text="Türkiye"></asp:Label>
+												</li>
+                                                <li class="li-info">
+													<span class="title-info">Ülke</span>
+                                                     <asp:Label ID="studentSchool" runat="server" class="info" Text="okul"></asp:Label>
 												</li>
 											</ul>
 										</div>
@@ -160,6 +164,10 @@
                                     <div class="form-group">
                                         <label for="usr">Email:</label>
                                         <input type="text" runat="server" class="form-control" id="studentEmailEdit">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="usr">Okul:</label>
+                                        <input type="text" runat="server" class="form-control" id="studentSchoolEdit">
                                     </div>
                                     <div class="form-group">
                                         <span class="form-group-btn">

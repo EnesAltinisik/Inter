@@ -8,24 +8,28 @@ using System.Web.UI.WebControls;
 
 namespace InternshipER
 {
-    public partial class WebForm2 : System.Web.UI.Page
+    public partial class studentForm : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
-            int user_id=1;
+
+            string user_id = "0";
             try
             {
-                user_id = int.Parse(Request.QueryString["UserId"]);
+                user_id = Request.QueryString["UserId"];
             }
             catch (Exception ex)
             {
+                user_id = Session["id"].ToString();
             }
-            setStudentInfo(user_id);
+            if (!IsPostBack)
+                 setStudentInfo(user_id);
         }
-        protected void setStudentInfo(int user_id)
+        protected void setStudentInfo(string user_id)
         {
             List<String> infos = Database.studentInfo(user_id);
+            if (infos.Count == 0)
+                return;
             studentAdress.Text = infos[0];
             studentAge.Text = infos[1];
             studentCountry.Text = infos[2];
@@ -35,12 +39,25 @@ namespace InternshipER
             studentName.Text = infos[6];
             studentPhone.Text = infos[7];
             studentWebsite.Text = infos[8];
+            studentSchool.Text = infos[9];
+
+            studentAdressEdit.Value = infos[0];
+            studentAgeEdit.Value = infos[1];
+            studentCountryEdit.Value = infos[2];
+            studentDepartmentEdit.Value = infos[3];
+            studentDescriptionEdit.Value = infos[4];
+            studentEmailEdit.Value = infos[5];
+            studentNameEdit.Value = infos[6];
+            studentPhoneEdit.Value = infos[7];
+            studentWebsiteEdit.Value = infos[8];
+            studentSchoolEdit.Value = infos[9];
+
         }
         protected void updateStudentProfile(object sender, EventArgs e)
         {
-            Database.updateStudenProfile(int.Parse(Request.QueryString["UserId"]), studentAdressEdit.Value, studentAgeEdit.Value, studentCountryEdit.Value, studentDepartmentEdit.Value
-                , studentDescriptionEdit.Value,studentEmailEdit.Value, studentNameEdit.Value, studentPhoneEdit.Value, studentWebsiteEdit.Value);
-            setStudentInfo(int.Parse(Request.QueryString["UserId"]));
+            Database.updateStudenProfile(Request.QueryString["UserId"], studentAdressEdit.Value, studentAgeEdit.Value, studentCountryEdit.Value, studentDepartmentEdit.Value
+                , studentDescriptionEdit.Value,studentEmailEdit.Value, studentNameEdit.Value, studentPhoneEdit.Value, studentWebsiteEdit.Value, studentSchoolEdit.Value);
+            setStudentInfo(Request.QueryString["UserId"]);
         }
     }
 }

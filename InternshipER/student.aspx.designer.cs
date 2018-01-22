@@ -10,7 +10,7 @@
 namespace InternshipER {
     
     
-    public partial class WebForm2 {
+    public partial class studentForm {
         
         /// <summary>
         /// studentName denetimi.
@@ -94,6 +94,15 @@ namespace InternshipER {
         protected global::System.Web.UI.WebControls.Label studentCountry;
         
         /// <summary>
+        /// studentSchool denetimi.
+        /// </summary>
+        /// <remarks>
+        /// Otomatik üretilmiş alan.
+        /// Değiştirmek için, alan bildirimini tasarımcı dosyasından arka plan kod dosyasına taşıyın.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label studentSchool;
+        
+        /// <summary>
         /// studentNameEdit denetimi.
         /// </summary>
         /// <remarks>
@@ -173,6 +182,15 @@ namespace InternshipER {
         /// Değiştirmek için, alan bildirimini tasarımcı dosyasından arka plan kod dosyasına taşıyın.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText studentEmailEdit;
+        
+        /// <summary>
+        /// studentSchoolEdit denetimi.
+        /// </summary>
+        /// <remarks>
+        /// Otomatik üretilmiş alan.
+        /// Değiştirmek için, alan bildirimini tasarımcı dosyasından arka plan kod dosyasına taşıyın.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText studentSchoolEdit;
         
         /// <summary>
         /// studentPhotoEdit denetimi.

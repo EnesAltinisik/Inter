@@ -242,11 +242,11 @@ namespace InternshipER.App_Code
             }
         }
 
-        public static List<String> studentInfo(int userId)
+        public static List<String> studentInfo(string userId)
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT adress, age, country, department, description, email, username, phone, website FROM users WHERE user_id = @Id"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT adress, age, country, department, description, email, name, phone, website, school FROM student_details WHERE user_id = @Id"))
                 {
                     List<string> infos = new List<string>();
                     cmd.CommandType = CommandType.Text;
@@ -255,7 +255,7 @@ namespace InternshipER.App_Code
                     con.Open();
                     NpgsqlDataReader values = cmd.ExecuteReader();
                     while(values.Read())
-                        for(int i=0;i<9;i++)
+                        for(int i=0;i<10;i++)
                         {
                             if (!values.IsDBNull(i))
                                 infos.Add(values.GetString(i));
@@ -268,11 +268,11 @@ namespace InternshipER.App_Code
             }
         }
 
-        internal static void updateStudenProfile(int id, string adress, string age, string country, string department, string description, string email, string name, string phone, string website)
+        internal static void updateStudenProfile(string id, string adress, string age, string country, string department, string description, string email, string name, string phone, string website, string school)
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("UPDATE users SET adress=@Adress, description=@Desc, username=@Name, email=@Email, age=@Age, phone=@Tel, website=@Website, country=@Country, department=@Department WHERE user_id = @Id",con))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("UPDATE student_details SET adress=@Adress, description=@Desc, name=@Name, email=@Email, age=@Age, phone=@Tel, website=@Website, country=@Country, department=@Department, school=@School WHERE user_id = @Id",con))
                 {
                     List<string> infos = new List<string>();
                     cmd.Parameters.AddWithValue("@Id", id);
@@ -285,6 +285,7 @@ namespace InternshipER.App_Code
                     cmd.Parameters.AddWithValue("@Website", website);
                     cmd.Parameters.AddWithValue("@Country", country);
                     cmd.Parameters.AddWithValue("@Department", department);
+                    cmd.Parameters.AddWithValue("@School", school);
 
                     con.Open();
                     cmd.ExecuteNonQuery();

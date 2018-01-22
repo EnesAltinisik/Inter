@@ -191,6 +191,7 @@
     <Content Include="search.aspx" />
     <Content Include="Site.Master" />
     <Content Include="student.aspx" />
+    <Content Include="studentRegister.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -252,6 +253,13 @@
     </Compile>
     <Compile Include="student.aspx.designer.cs">
       <DependentUpon>student.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="studentRegister.aspx.cs">
+      <DependentUpon>studentRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="studentRegister.aspx.designer.cs">
+      <DependentUpon>studentRegister.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

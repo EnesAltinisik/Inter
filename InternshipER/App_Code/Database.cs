@@ -82,10 +82,11 @@ namespace InternshipER.App_Code
                     con.Close();
                 }
             }
+
             user_id = getUserId(username, password);
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO company_details (user_id,name, email,address,telephone,website,title) VALUES(@User_id,@Name,@Email,@Address,@Telephone,@Website,@Title)"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO company_details (user_id,name, email,address,telephone,website,description,title) VALUES(@User_id,@Name,@Email,@Address,@Telephone,@Website,@Description,@Title)"))
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@User_id", user_id);
@@ -94,12 +95,58 @@ namespace InternshipER.App_Code
                     cmd.Parameters.AddWithValue("@Address", "");
                     cmd.Parameters.AddWithValue("@Telephone","");
                     cmd.Parameters.AddWithValue("@Website","");
+                    cmd.Parameters.AddWithValue("@Description", "");
                     cmd.Parameters.AddWithValue("@Title", "");
                     cmd.Connection = con;
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
                    
+                }
+            }
+
+        }
+
+        public static void registerStudent(string studentName, String username, String password, String email)
+        {
+            int user_id;
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO users (username, email, password) VALUES(@Username, @Email, @Password)"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Username", username);
+                    cmd.Parameters.AddWithValue("@Password", Encrypt(password));
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+
+            user_id = getUserId(username, password);
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO student_details (user_id,name,email,address,country,department,description,phone,website,age,school) VALUES(@User_id,@Name,@Email,@Address,@Country,@Department,@Description,@Phone,@Website,@Age,@School)"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@User_id", user_id);
+                    cmd.Parameters.AddWithValue("@Name", studentName);
+                    cmd.Parameters.AddWithValue("@Email", "");
+                    cmd.Parameters.AddWithValue("@Address", "");
+                    cmd.Parameters.AddWithValue("@Country", "");
+                    cmd.Parameters.AddWithValue("@Department", "");
+                    cmd.Parameters.AddWithValue("@Description", "");
+                    cmd.Parameters.AddWithValue("@Phone", "");
+                    cmd.Parameters.AddWithValue("@Website", "");
+                    cmd.Parameters.AddWithValue("@Age", "");
+                    cmd.Parameters.AddWithValue("@School", "");
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
                 }
             }
 

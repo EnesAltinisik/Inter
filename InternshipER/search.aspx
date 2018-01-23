@@ -10,35 +10,15 @@
                     <th>#</th>
                     <th>Firma</th>
                     <th>Pozisyon</th>
+                    <th>Açıklama</th>
                     <th>Lokasyon</th>
                     <th>İlan Tarihi</th>
+                    <th>Son Tarihi</th>
+                    <th>Staj Dönemi</th>
                     <th class="text-center"></th>
                 </tr>
             </thead>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span>Başvur</a></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span>Başvur</a> </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span>Başvur</a></td>
-            </tr>
+            <asp:PlaceHolder ID = "searchTable" runat="server" />
         </table>
     </div>
 </div>

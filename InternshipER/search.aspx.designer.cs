@@ -11,5 +11,14 @@ namespace InternshipER {
     
     
     public partial class searchForm {
+        
+        /// <summary>
+        /// searchTable denetimi.
+        /// </summary>
+        /// <remarks>
+        /// Otomatik üretilmiş alan.
+        /// Değiştirmek için, alan bildirimini tasarımcı dosyasından arka plan kod dosyasına taşıyın.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder searchTable;
     }
 }

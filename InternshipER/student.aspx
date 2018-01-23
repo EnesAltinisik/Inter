@@ -68,7 +68,7 @@
                                                      <asp:Label ID="studentCountry" runat="server" class="info" Text="Türkiye"></asp:Label>
 												</li>
                                                 <li class="li-info">
-													<span class="title-info">Ülke</span>
+													<span class="title-info">Okul</span>
                                                      <asp:Label ID="studentSchool" runat="server" class="info" Text="okul"></asp:Label>
 												</li>
 											</ul>

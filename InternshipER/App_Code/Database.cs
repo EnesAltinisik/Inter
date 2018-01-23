@@ -43,6 +43,26 @@ namespace InternshipER.App_Code
                 }
             }
         }
+        public static DataTable GetJob()
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select job_id, username, job_title, description, location, start_date, end_date, term from jobs inner join users on cast(jobs.user_id as bigint)=users.user_id"))
+                {
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter()) {
+                        cmd.Connection = con;
+                        con.Open();
+                        sda.SelectCommand = cmd;
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+            
+        }
 
 
         public static int getUserId(String username, String password)
@@ -246,7 +266,7 @@ namespace InternshipER.App_Code
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT adress, age, country, department, description, email, name, phone, website, school FROM student_details WHERE user_id = @Id"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT address, age, country, department, description, email, name, phone, website, school FROM student_details WHERE user_id = @Id"))
                 {
                     List<string> infos = new List<string>();
                     cmd.CommandType = CommandType.Text;
@@ -272,7 +292,7 @@ namespace InternshipER.App_Code
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("UPDATE student_details SET adress=@Adress, description=@Desc, name=@Name, email=@Email, age=@Age, phone=@Tel, website=@Website, country=@Country, department=@Department, school=@School WHERE user_id = @Id",con))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("UPDATE student_details SET address=@Adress, description=@Desc, name=@Name, email=@Email, age=@Age, phone=@Tel, website=@Website, country=@Country, department=@Department, school=@School WHERE user_id = @Id",con))
                 {
                     List<string> infos = new List<string>();
                     cmd.Parameters.AddWithValue("@Id", id);

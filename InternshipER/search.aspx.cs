@@ -14,6 +14,26 @@ namespace InternshipER
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string user_id = "0";
+            try
+            {
+                user_id = Request.QueryString["UserId"];
+            }
+            catch (Exception ex)
+            {
+                user_id = Session["id"].ToString();
+            }
+            string jobid = "0";
+            try
+            {
+                jobid = Request.QueryString["jobid"];
+            }
+            catch (Exception ex)
+            {
+                jobid = null;
+            }
+            if(jobid!=null)
+                Database.jobAdd2User(jobid, user_id, "", new DateTime());
             if (!this.IsPostBack)
             {
                 //Populating a DataTable from database.
@@ -34,13 +54,35 @@ namespace InternshipER
                         html.Append(row[column.ColumnName]);
                         html.Append("</td>");
                     }
+                    html.Append("<td>  <a class='btn btn-info btn-xs' href=\"search?UserId=");
+                    html.Append(user_id);
+                    html.Append("&jobid=");
+                    html.Append(row["job_id"]);
+                    html.Append("\" >Başvur</a> </td>");
                     html.Append("</tr>");
                 }
 
               
                 //Append the HTML string to Placeholder.
-                searchTable.Controls.Add(new Literal { Text = html.ToString() });
+                searchTable.Controls.Add(new LiteralControl { Text = html.ToString() });
             }
+        }
+        protected void jobAdd2User(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string job_id= Request.QueryString["jobid"];
+            sop.Value = job_id;
+            string user_id = "0";
+            try
+            {
+                user_id = Request.QueryString["UserId"];
+            }
+            catch (Exception ex)
+            {
+                user_id = Session["id"].ToString();
+            }
+            Database.jobAdd2User(job_id,user_id,"",new DateTime());
+
         }
 
 

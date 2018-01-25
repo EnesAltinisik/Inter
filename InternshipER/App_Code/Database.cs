@@ -25,7 +25,7 @@ namespace InternshipER.App_Code
             NpgsqlConnection con = new NpgsqlConnection(connectionString);
             return con;
         }
-        public static bool loginAttempt (String id, String password)
+        public static bool loginAttempt(String id, String password)
         {
             using (NpgsqlConnection con = connect())
             {
@@ -38,8 +38,8 @@ namespace InternshipER.App_Code
                     con.Open();
                     int count = int.Parse(cmd.ExecuteScalar().ToString());
                     con.Close();
-                    if (count >0) return true;
-                    else return false;             
+                    if (count > 0) return true;
+                    else return false;
                 }
             }
         }
@@ -49,7 +49,8 @@ namespace InternshipER.App_Code
             {
                 using (NpgsqlCommand cmd = new NpgsqlCommand("select job_id, username, job_title, description, location, start_date, end_date, term from jobs inner join users on cast(jobs.user_id as bigint)=users.user_id"))
                 {
-                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter()) {
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                    {
                         cmd.Connection = con;
                         con.Open();
                         sda.SelectCommand = cmd;
@@ -61,7 +62,7 @@ namespace InternshipER.App_Code
                     }
                 }
             }
-            
+
         }
 
 
@@ -84,8 +85,8 @@ namespace InternshipER.App_Code
             }
             return user_id;
         }
-            
-        public static void registerCompany(string companyName, String username,String password,String email)
+
+        public static void registerCompany(string companyName, String username, String password, String email)
         {
             int user_id;
             using (NpgsqlConnection con = connect())
@@ -111,17 +112,17 @@ namespace InternshipER.App_Code
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@User_id", user_id);
                     cmd.Parameters.AddWithValue("@Name", companyName);
-                    cmd.Parameters.AddWithValue("@Email","");
+                    cmd.Parameters.AddWithValue("@Email", "");
                     cmd.Parameters.AddWithValue("@Address", "");
-                    cmd.Parameters.AddWithValue("@Telephone","");
-                    cmd.Parameters.AddWithValue("@Website","");
+                    cmd.Parameters.AddWithValue("@Telephone", "");
+                    cmd.Parameters.AddWithValue("@Website", "");
                     cmd.Parameters.AddWithValue("@Description", "");
                     cmd.Parameters.AddWithValue("@Title", "");
                     cmd.Connection = con;
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
-                   
+
                 }
             }
 
@@ -244,7 +245,7 @@ namespace InternshipER.App_Code
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("UPDATE company_details SET title=@Title,description=@Desc,name=@Name,email=@Email,address=@Address,telephone=@Tel,website=@Website WHERE user_id = @Id",con))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("UPDATE company_details SET title=@Title,description=@Desc,name=@Name,email=@Email,address=@Address,telephone=@Tel,website=@Website WHERE user_id = @Id", con))
                 {
                     List<string> infos = new List<string>();
                     cmd.Parameters.AddWithValue("@Desc", description);
@@ -274,8 +275,8 @@ namespace InternshipER.App_Code
                     cmd.Connection = con;
                     con.Open();
                     NpgsqlDataReader values = cmd.ExecuteReader();
-                    while(values.Read())
-                        for(int i=0;i<10;i++)
+                    while (values.Read())
+                        for (int i = 0; i < 10; i++)
                         {
                             if (!values.IsDBNull(i))
                                 infos.Add(values.GetString(i));
@@ -292,7 +293,7 @@ namespace InternshipER.App_Code
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("UPDATE student_details SET address=@Adress, description=@Desc, name=@Name, email=@Email, age=@Age, phone=@Tel, website=@Website, country=@Country, department=@Department, school=@School WHERE user_id = @Id",con))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("UPDATE student_details SET address=@Adress, description=@Desc, name=@Name, email=@Email, age=@Age, phone=@Tel, website=@Website, country=@Country, department=@Department, school=@School WHERE user_id = @Id", con))
                 {
                     List<string> infos = new List<string>();
                     cmd.Parameters.AddWithValue("@Id", id);
@@ -326,6 +327,24 @@ namespace InternshipER.App_Code
                     cmd.Parameters.AddWithValue("@description", jobDesc);
                     cmd.Parameters.AddWithValue("@location", jobLocation);
                     cmd.Parameters.AddWithValue("@status", jobStatus);
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+        public static void jobAdd2User(string job_id, String user_id, string sop, DateTime date)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO job_student (job_id, user_id, sop ,date) VALUES(@job, @user, @sop, @date)"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@job", job_id);
+                    cmd.Parameters.AddWithValue("@user", user_id);
+                    cmd.Parameters.AddWithValue("@sop", sop);
+                    cmd.Parameters.AddWithValue("@date", date);
                     cmd.Connection = con;
                     con.Open();
                     cmd.ExecuteNonQuery();

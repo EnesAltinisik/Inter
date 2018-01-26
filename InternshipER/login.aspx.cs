@@ -15,6 +15,7 @@ namespace InternshipER
         {
             if (!IsPostBack)
             {
+                Session["loginPage"] = true;
                 Page.Title = "Giriş Ekranı";
             }
 
@@ -24,6 +25,7 @@ namespace InternshipER
             if (Database.loginAttempt(loginUsername.Value, loginPassword.Value) == true)
             {
                 Session["id"] = Database.getUserId(loginUsername.Value, loginPassword.Value);
+                Session["loginPage"] = false;
                 Response.Redirect("home.aspx");
             }
             else

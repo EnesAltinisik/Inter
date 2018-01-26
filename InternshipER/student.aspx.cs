@@ -12,18 +12,31 @@ namespace InternshipER
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            string user_id = "0";
-            try
-            {
-                user_id = Request.QueryString["UserId"];
-            }
-            catch (Exception ex)
-            {
-                user_id = Session["id"].ToString();
-            }
             if (!IsPostBack)
-                 setStudentInfo(user_id);
+            {
+                string user_id = "0";
+                try
+                {
+                    user_id = Request.QueryString["UserId"];
+                }
+                catch (Exception ex)
+                {
+                    if (Session["id"] != null && !Session["id"].Equals(""))
+                    {
+                        user_id = Session["id"].ToString();
+                        if (!Database.isStudent(user_id.ToString()))
+                        {
+                            Response.Redirect("company.aspx");
+                        }
+                    }
+                    else
+                    {
+                        Response.Redirect("login.aspx");
+                    }
+                }
+                setStudentInfo(user_id);
+            }
+            
         }
         protected void setStudentInfo(string user_id)
         {

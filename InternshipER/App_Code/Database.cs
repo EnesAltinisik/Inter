@@ -375,5 +375,22 @@ namespace InternshipER.App_Code
                 }
             }
         }
+        public static bool isStudent(String user_id)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT count(*) FROM student_details WHERE user_id = @Id"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Id", user_id);
+                    cmd.Connection = con;
+                    con.Open();
+                    int count = int.Parse(cmd.ExecuteScalar().ToString());
+                    con.Close();
+                    if (count > 0) return true;
+                    else return false;
+                }
+            }
+        }
     }
 }

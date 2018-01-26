@@ -82,22 +82,22 @@
         </nav>
         <script src="Scripts/WebForms/Home.js"></script>
         <link rel="stylesheet" type="text/css" href="Content/Home.css">
-            <div class="col-md-2 col-sm-2 sidebar3">
+            <div runat="server" id="rightMenu" class="col-md-2 col-sm-2 sidebar3">
                 <div class="left-navigation">
                     <ul>
-                        <li><i class="fa fa-book" aria-hidden="true"></i>Profil</li>
-                        <li><i class="fa fa-bookmark-o" aria-hidden="true"></i>Mesaj Kutusu <span class="mailbox pull-right">3</span></li>
-                        <li><i class="fa fa-trophy" aria-hidden="true"></i>Arama</li>
-                        <li><i class="fa fa-users" aria-hidden="true"></i>Değerlendirmeler</li>
+                        <li runat="server" id="profilMenu"><i class="fa fa-book" aria-hidden="true"></i><a href="company.aspx">Profil </a></li>
+                        <li runat="server" id="mailMenu"><i class="fa fa-bookmark-o" aria-hidden="true"></i><a href="#">Mesaj Kutusu </a><span class="mailbox pull-right">3</span></li>
+                        <li runat="server" id="aramaMenu"><i class="fa fa-trophy" aria-hidden="true"></i><a href="search.aspx">Arama </a></li>
+                        <li runat="server" id="degerlendirmeMenu"><i class="fa fa-users" aria-hidden="true"></i><a href="evaluation.aspx">Değerlendirmeler</a></li>
 
                     </ul>
                     <ul class="category">
-                        <li><i class="fa fa-circle-thin" aria-hidden="true"></i>Favoriler</li>
+                        <li runat="server" id="favorilerMenu"><i class="fa fa-circle-thin" aria-hidden="true"></i><a href="favourite.aspx">Favoriler</a></li>
 
                     </ul>
                     <ul>
-                        <li><i class="fa fa-cog" aria-hidden="true"></i>Ayarlar</li>
-                        <li><i class="fa fa-power-off" aria-hidden="true"></i>Çıkış</li>
+                        <li runat="server" id="ayarlarMenu"><i class="fa fa-cog" aria-hidden="true"></i>Ayarlar</li>
+                        <li runat="server" id="cikisMenu"><i class="fa fa-power-off" aria-hidden="true"></i><a href="login.aspx" runat="server" id="logoutClick" onclick="logout_Event" causesvalidation="False" ondatabinding="logout_Event" >Çıkış</a></li>
                     </ul>
                 </div>
             </div>

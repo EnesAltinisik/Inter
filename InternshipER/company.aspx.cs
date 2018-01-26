@@ -20,7 +20,18 @@ namespace InternshipER
             }
             catch (Exception ex)
             {
-                user_id = int.Parse(Session["id"].ToString());
+                if (Session["id"]!=null && !Session["id"].Equals(""))
+                {
+                    user_id = int.Parse(Session["id"].ToString());
+                    if (Database.isStudent(user_id.ToString()))
+                    {
+                        Response.Redirect("student.aspx");
+                    }
+                }
+                else
+                {
+                    Response.Redirect("login.aspx");
+                }
             }
             getCompanyInfo(user_id);
             if (!IsPostBack)

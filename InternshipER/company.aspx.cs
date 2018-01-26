@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -25,6 +26,35 @@ namespace InternshipER
             if (!IsPostBack)
             {
                 getCompanyInfo(user_id);
+                //Populating a DataTable from database.
+                System.Data.DataTable dt = Database.GetUserJob(user_id);
+
+                //Building an HTML string.
+                StringBuilder html = new StringBuilder();
+
+
+
+                //Building the Data rows.
+                foreach (System.Data.DataRow row in dt.Rows)
+                {
+                    html.Append("<tr>");
+                    foreach (System.Data.DataColumn column in dt.Columns)
+                    {
+                        html.Append("<td>");
+                        html.Append(row[column.ColumnName]);
+                        html.Append("</td>");
+                    }
+                    html.Append("<td>  <a class='btn btn-info btn-xs' href=\"search?UserId=");
+                    html.Append(user_id);
+                    html.Append("&jobid=");
+                    html.Append(row["job_id"]);
+                    html.Append("\" >Başvur</a> </td>");
+                    html.Append("</tr>");
+                }
+
+
+                //Append the HTML string to Placeholder.
+                searchTable.Controls.Add(new LiteralControl { Text = html.ToString() });
             }
         }
         protected void getCompanyInfo(int user_id)

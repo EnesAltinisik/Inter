@@ -43,6 +43,29 @@ namespace InternshipER.App_Code
                 }
             }
         }
+
+        internal static DataTable GetUserJob(int user_id)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select job_id, job_title, description, location, start_date, end_date, term from jobs inner join users on cast (jobs.user_id as bigint)=users.user_id where users.user_id=@UserId"))
+                {
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        cmd.Parameters.AddWithValue("@UserId", user_id);
+                        con.Open();
+                        sda.SelectCommand = cmd;
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+        }
+
         public static DataTable GetJob()
         {
             using (NpgsqlConnection con = connect())

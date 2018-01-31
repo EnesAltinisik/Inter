@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" type="text/css" href="Content/Company.css">
-    <link rel="stylesheet" type="text/css" href="Content/Student.css">
     <script src="Scripts/Company.js"></script>
     <script src="https://use.fontawesome.com/bfdd1d98a1.js"></script>
     <div class="container">
@@ -20,8 +19,7 @@
                                             </h2>
                                             <div style="float: right">
                                                 <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
-                                                    Profil Düzenle
-                                               
+                                                    Profil Düzenle                                               
                                                 </button>
                                             </div>
                                         </td>
@@ -57,16 +55,58 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row" style="margin-top: 40px; background-color="">
+                                        <div class="col-md-12">
+                                            <div class="well well-sm">
+                                                <div class="text-right">
+                                                    <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Değerlendirme Yaz</a>
+                                                </div>
+
+                                                <div class="row" id="post-review-box" style="display: none;">
+                                                    <div class="col-md-12">
+                                                        <form accept-charset="UTF-8" action="" method="post">
+                                                            <input id="ratings-hidden" name="rating" type="hidden">
+                                                            <textarea class="form-control animated" cols="150" id="new-review" name="comment" placeholder="Değerlendirmenizi buraya giriniz..." rows="15"></textarea>
+
+                                                            <div class="text-right">
+                                                                <div class="stars starrr" data-rating="0"></div>
+                                                                <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display: none; margin-right: 10px;">
+                                                                    <span class="glyphicon glyphicon-remove"></span>Vazgeç</a>
+                                                                <button class="btn btn-success btn-lg" type="submit">Kaydet</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                     <div class="reviews">
-                                        <div class="row blockquote review-item">
-                                            <div class="col-md-1 text-center">
+                                        <div class="col-md-5 blockquote review-item">
+                                            <div class="col-md-3 text-center">
                                                 <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
                                                 <div class="caption">
                                                     <small>by <a href="#joe">Joe</a></small>
                                                 </div>
 
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-9">
+                                                <h4>My awesome review</h4>
+                                                <div class="ratebox text-center" data-id="0" data-rating="5"></div>
+                                                <p class="review-text">My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. </p>
+
+                                                <small class="review-date">March 26, 2017</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 blockquote review-item">
+                                            <div class="col-md-3 text-center">
+                                                <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
+                                                <div class="caption">
+                                                    <small>by <a href="#joe">Joe</a></small>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-9">
                                                 <h4>My awesome review</h4>
                                                 <div class="ratebox text-center" data-id="0" data-rating="5"></div>
                                                 <p class="review-text">My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. </p>
@@ -76,7 +116,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="row col-md-12 col-md-offset-1 custyle">
+
+                                    <div class="row col-md-12 custyle">
                                         <table class="table table-striped custab">
                                             <thead>
                                                 <tr>

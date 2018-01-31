@@ -180,9 +180,10 @@ a {
 
 .review-item {
     background-color: white;
-    padding: initial;
     margin-bottom: 5px;
     box-shadow: 1px 1px 5px #343a40;
+    width: 451px;
+    height: 283px;
 }
 
     .review-item .review-date {

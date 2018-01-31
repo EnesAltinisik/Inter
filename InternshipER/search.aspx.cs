@@ -21,11 +21,7 @@ namespace InternshipER
             {
                 if (Session["id"] != null && !Session["id"].Equals(""))
                 {
-                    user_id =  Session["id"].ToString();
-                    if (!Database.isStudent(user_id.ToString()))
-                    {
-                        Response.Redirect("company.aspx");
-                    }
+                    user_id =  Session["id"].ToString();               
                 }
                 else
                 {

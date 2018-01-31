@@ -87,7 +87,16 @@
                     <ul>
                         <li runat="server" id="profilMenu"><i class="fa fa-book" aria-hidden="true"></i><a href="company.aspx">Profil </a></li>
                         <li runat="server" id="mailMenu"><i class="fa fa-bookmark-o" aria-hidden="true"></i><a href="#">Mesaj Kutusu </a><span class="mailbox pull-right">3</span></li>
-                        <li runat="server" id="aramaMenu"><i class="fa fa-trophy" aria-hidden="true"></i><a href="search.aspx">Arama </a></li>
+                        <li class="list">
+                            <div class="dropdown">
+                                <i class="fa fa-list" aria-hidden="true"></i>Arama <i class="fa fa-plus pull-right" aria-hidden="true"></i>
+                            </div>
+                            <ul class="submenu hide">
+                                <li><a href="search.aspx">İş İlanları </a></li>
+                                <li><a href="search.aspx?param=1" >Öğrenci </a></li>
+                                <li><a href="search.aspx?param=2">Firma </a></li>
+                            </ul>
+                        </li>
                         <li runat="server" id="degerlendirmeMenu"><i class="fa fa-users" aria-hidden="true"></i><a href="evaluation.aspx">Değerlendirmeler</a></li>
 
                     </ul>

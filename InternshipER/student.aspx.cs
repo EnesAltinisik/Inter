@@ -14,29 +14,32 @@ namespace InternshipER
         {
             if (!IsPostBack)
             {
-                string user_id = "0";
-                try
-                {
-                    user_id = Request.QueryString["UserId"];
-                }
-                catch (Exception ex)
-                {
-                    if (Session["id"] != null && !Session["id"].Equals(""))
-                    {
-                        user_id = Session["id"].ToString();
-                        if (!Database.isStudent(user_id.ToString()))
-                        {
-                            Response.Redirect("company.aspx");
-                        }
-                    }
-                    else
-                    {
-                        Response.Redirect("login.aspx");
-                    }
-                }
+                string user_id = getUsirId();
                 setStudentInfo(user_id);
             }
             
+        }
+        protected string getUsirId()
+        {
+            string user_id = "0";
+
+            user_id = Request.QueryString["UserId"];
+            if (user_id == null)
+            {
+                if (Session["id"] != null && !Session["id"].Equals(""))
+                {
+                    user_id = Session["id"].ToString();
+                    if (!Database.isStudent(user_id.ToString()))
+                    {
+                        Response.Redirect("company.aspx");
+                    }
+                }
+                else
+                {
+                    Response.Redirect("login.aspx");
+                }
+            }
+            return user_id;
         }
         protected void setStudentInfo(string user_id)
         {
@@ -68,9 +71,10 @@ namespace InternshipER
         }
         protected void updateStudentProfile(object sender, EventArgs e)
         {
-            Database.updateStudenProfile(Request.QueryString["UserId"], studentAdressEdit.Value, studentAgeEdit.Value, studentCountryEdit.Value, studentDepartmentEdit.Value
+            string user_id = getUsirId();
+            Database.updateStudenProfile(user_id, studentAdressEdit.Value, studentAgeEdit.Value, studentCountryEdit.Value, studentDepartmentEdit.Value
                 , studentDescriptionEdit.Value,studentEmailEdit.Value, studentNameEdit.Value, studentPhoneEdit.Value, studentWebsiteEdit.Value, studentSchoolEdit.Value);
-            setStudentInfo(Request.QueryString["UserId"]);
+            setStudentInfo(user_id);
         }
     }
 }

@@ -13,6 +13,8 @@ namespace InternshipER
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session.Clear();
+            Session["loginPage"] = true;
             if (!IsPostBack)
             {
                 Session["loginPage"] = true;

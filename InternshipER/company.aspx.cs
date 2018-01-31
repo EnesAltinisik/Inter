@@ -13,26 +13,7 @@ namespace InternshipER
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            int user_id = 0;
-            try
-            {
-                user_id = int.Parse(Request.QueryString["UserId"]);
-            }
-            catch (Exception ex)
-            {
-                if (Session["id"]!=null && !Session["id"].Equals(""))
-                {
-                    user_id = int.Parse(Session["id"].ToString());
-                    if (Database.isStudent(user_id.ToString()))
-                    {
-                        Response.Redirect("student.aspx");
-                    }
-                }
-                else
-                {
-                    Response.Redirect("login.aspx");
-                }
-            }
+            int user_id = getCompanyId();
             getCompanyInfo(user_id);
             if (!IsPostBack)
             {
@@ -68,6 +49,30 @@ namespace InternshipER
                 searchTable.Controls.Add(new LiteralControl { Text = html.ToString() });
             }
         }
+        protected int getCompanyId()
+        {
+            int user_id = 0;
+            try
+            {
+                user_id = int.Parse(Request.QueryString["UserId"]);
+            }
+            catch (Exception ex)
+            {
+                if (Session["id"] != null && !Session["id"].Equals(""))
+                {
+                    user_id = int.Parse(Session["id"].ToString());
+                    if (Database.isStudent(user_id.ToString()))
+                    {
+                        Response.Redirect("student.aspx");
+                    }
+                }
+                else
+                {
+                    Response.Redirect("login.aspx");
+                }
+            }
+            return user_id;
+        }
         protected void getCompanyInfo(int user_id)
         {
             List<String> infos = Database.companyInfo(user_id);
@@ -89,12 +94,12 @@ namespace InternshipER
         }
         protected void updateCompanyProfile(object sender, EventArgs e)
         {
-            description.Text = companyTitle.Value;
-            Database.updateCompanyProfile(int.Parse(Session["id"].ToString()), companyName.Value, companyTitle.Value, companyWebsite.Value, companyEmail.Value, companyDescription.Value, companyPhone.Value, companyAddress.Value);
+            Database.updateCompanyProfile(getCompanyId(), companyName.Value, companyTitle.Value, companyWebsite.Value, companyEmail.Value, companyDescription.Value, companyPhone.Value, companyAddress.Value);
+            getCompanyInfo(getCompanyId());
         }
         protected void createNewJob(object sender, EventArgs e)
         {
-            Database.createNewJob(Session["id"].ToString(), jobTitle.Value, jobDesc.Value, jobLocation.Value, true);
+            Database.createNewJob(getCompanyId().ToString(), jobTitle.Value, jobDesc.Value, jobLocation.Value, true);
         }
 
     }

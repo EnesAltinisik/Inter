@@ -51,24 +51,14 @@
                                     </div>
                                 </form>
                                 <form id="registerForm" style="display: none;">
-                                    <div class="form-group">
-                                        <asp:TextBox type="text" AutoPostBack="True" ID="username" TabIndex="1" class="form-control" placeholder="Kullancı Adı" value="" runat="server" UseSubmitBehavior="False" CausesValidation="False"></asp:TextBox>
-                                    </div>
-                                    <div class="form-group">
-                                        <asp:TextBox type="email" AutoPostBack="True" ID="email" TabIndex="2" class="form-control" placeholder="Email Adresi" value="" runat="server" UseSubmitBehavior="False" CausesValidation="False"></asp:TextBox>
-                                    </div>
-                                    <div class="form-group">
-                                        <asp:TextBox type="password" AutoPostBack="True" ID="password" TabIndex="3" class="form-control" placeholder="Şifre" runat="server" UseSubmitBehavior="False" CausesValidation="False"></asp:TextBox>
-                                    </div>
-                                    <div class="form-group">
-                                        <asp:TextBox type="password" AutoPostBack="True" ID="confirmPassword" TabIndex="4" class="form-control" placeholder="Şifre Tekrarı" runat="server" UseSubmitBehavior="False" CausesValidation="False"></asp:TextBox>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
-                                                <asp:Button runat="server" ID="Submit1" class="form-control btn btn-register" Text="Kayıt Ol"></asp:Button>
+                                    
+                                    <div> 
+                                            <div class="col-sm-5 col-sm-offset-1">
+                                                <asp:LinkButton runat="server" href="studentRegister.aspx" class=" btn btn-register" Text="Öğrenci"></asp:LinkButton>
                                             </div>
-                                        </div>
+                                            <div class="col-sm-5 col-sm-offset-1">
+                                                <asp:LinkButton runat="server"  href="companyRegister.aspx" class=" btn btn-register" Text="Sirket"></asp:LinkButton>
+                                            </div>
                                     </div>
                                 </form>
                             </div>

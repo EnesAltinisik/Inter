@@ -15,13 +15,22 @@ namespace InternshipER
         protected void Page_Load(object sender, EventArgs e)
         {
             string user_id = "0";
-            try
+
+            user_id = Request.QueryString["UserId"];
+            if (user_id == null)
             {
-                user_id = Request.QueryString["UserId"];
-            }
-            catch (Exception ex)
-            {
-                user_id = Session["id"].ToString();
+                if (Session["id"] != null && !Session["id"].Equals(""))
+                {
+                    user_id =  Session["id"].ToString();
+                    if (!Database.isStudent(user_id.ToString()))
+                    {
+                        Response.Redirect("company.aspx");
+                    }
+                }
+                else
+                {
+                    Response.Redirect("login.aspx");
+                }
             }
             string jobid = "0";
             try
@@ -33,7 +42,7 @@ namespace InternshipER
                 jobid = null;
             }
             if(jobid!=null)
-                Database.jobAdd2User(jobid, user_id, "", new DateTime());
+                Database.jobAdd2User(jobid, user_id, "", new DateTime());  /* TODO database sop ve date eklemesi ve mevcutsa silinmesi*/
             if (!this.IsPostBack)
             {
                 //Populating a DataTable from database.

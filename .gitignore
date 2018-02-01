@@ -4,3 +4,5 @@
 *.cache
 
 InternshipER/obj/Debug/InternshipER\.pdb
+
+\.vs/InternshipER/v15/Server/sqlite3/

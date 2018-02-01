@@ -19,7 +19,7 @@
 
                     <th class="text-center"></th>
                 </tr>
-            </thead>S
+            </thead>
             <asp:PlaceHolder ID = "searchTable" runat="server" />
         </table>
     </div>

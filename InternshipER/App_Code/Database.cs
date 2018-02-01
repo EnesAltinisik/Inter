@@ -18,7 +18,6 @@ namespace InternshipER.App_Code
     public class Database
     {
         public static SqlConnection _productConn { get; private set; }
-
         public static NpgsqlConnection connect()
         {
             String connectionString = ConfigurationManager.ConnectionStrings["internshiper"].ConnectionString;
@@ -43,7 +42,6 @@ namespace InternshipER.App_Code
                 }
             }
         }
-
         internal static DataTable GetUserJob(int user_id)
         {
             using (NpgsqlConnection con = connect())
@@ -65,7 +63,6 @@ namespace InternshipER.App_Code
                 }
             }
         }
-
         public static DataTable GetJob()
         {
             using (NpgsqlConnection con = connect())
@@ -87,8 +84,6 @@ namespace InternshipER.App_Code
             }
 
         }
-
-
         public static int getUserId(String username, String password)
         {
             int user_id;
@@ -108,7 +103,6 @@ namespace InternshipER.App_Code
             }
             return user_id;
         }
-
         public static void registerCompany(string companyName, String username, String password, String email)
         {
             int user_id;
@@ -150,7 +144,6 @@ namespace InternshipER.App_Code
             }
 
         }
-
         public static void registerStudent(string studentName, String username, String password, String email)
         {
             int user_id;
@@ -285,7 +278,6 @@ namespace InternshipER.App_Code
                 }
             }
         }
-
         public static List<String> studentInfo(string userId)
         {
             using (NpgsqlConnection con = connect())
@@ -311,7 +303,6 @@ namespace InternshipER.App_Code
                 }
             }
         }
-
         internal static void updateStudenProfile(string id, string adress, string age, string country, string department, string description, string email, string name, string phone, string website, string school)
         {
             using (NpgsqlConnection con = connect())
@@ -337,7 +328,6 @@ namespace InternshipER.App_Code
                 }
             }
         }
-
         public static void createNewJob(String userId, String jobTitle, String jobDesc, String jobLocation, bool jobStatus)
         {
             using (NpgsqlConnection con = connect())
@@ -389,6 +379,27 @@ namespace InternshipER.App_Code
                     con.Close();
                     if (count > 0) return true;
                     else return false;
+                }
+            }
+        }
+        internal static DataTable GetAssignedJobs(String user_id)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select jobs.job_id, job_title, description, location, start_date, end_date, term from jobs inner join job_student on job_student.job_id=cast(jobs.job_id as text) where job_student.user_id=@UserId"))
+                {
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        cmd.Parameters.AddWithValue("@UserId", user_id);
+                        con.Open();
+                        sda.SelectCommand = cmd;
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
                 }
             }
         }

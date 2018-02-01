@@ -102,7 +102,7 @@
                     </ul>
                     <ul class="category">
                         <li runat="server" id="favorilerMenu"><i class="fa fa-circle-thin" aria-hidden="true"></i><a href="favourite.aspx">Favoriler</a></li>
-
+                        <li runat="server" id="jobReq"><i class="fa fa-circle-thin" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#basvuruModal">Başvurularım</a></li>
                     </ul>
                     <ul>
                         <li runat="server" id="ayarlarMenu"><i class="fa fa-cog" aria-hidden="true"></i>Ayarlar</li>
@@ -110,7 +110,44 @@
                     </ul>
                 </div>
             </div>
-     
+        <div class="modal fade" id="basvuruModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Profil Düzenleme</h4>
+                    </div>
+                    <div class="modal hide" id="myModal">
+
+                        <button type="button" class="close" data-dismiss="modal">x</button>
+                        <h3>Login to MyWebsite.com</h3>
+                    </div>
+                    <div class="modal-body" align="center">
+                        <div class="container">
+                            <div class="row">
+                                <table class="table table-striped custab">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Firma</th>
+                                            <th>Pozisyon</th>
+                                            <th>Açıklama</th>
+                                            <th>Lokasyon</th>
+                                            <th>İlan Tarihi</th>
+                                            <th>Son Tarihi</th>
+                                            <th>Staj Dönemi</th>
+
+                                            <th class="text-center"></th>
+                                        </tr>
+                                    </thead>
+                                    <asp:PlaceHolder ID="jobReqTable" runat="server" />
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
             <!-- End of side bar-->
         <div class="col-md-9 col-sm-9 sidebar3">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">

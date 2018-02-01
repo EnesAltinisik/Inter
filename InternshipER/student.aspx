@@ -77,27 +77,69 @@
 												</li>
 											</ul>
 										</div>
-       <div class="reviews">
-           <div class="row blockquote review-item">
-               <div class="col-md-3 text-center">
-                   <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
-                   <div class="caption">
-                       <small>by <a href="#joe">Joe</a></small>
-                   </div>
+                                        <div class="row" style="margin-top: 180px; background-color="">
+                                        <div class="col-md-12">
+                                            <div class="well well-sm">
+                                                <div class="text-right">
+                                                    <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Değerlendirme Yaz</a>
+                                                </div>
 
-               </div>
-               <div class="col-md-9">
-                   <h4>My awesome review</h4>
-                   <div class="ratebox text-center" data-id="0" data-rating="5"></div>
-                   <p class="review-text">My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. </p>
+                                                <div class="row" id="post-review-box" style="display: none;">
+                                                    <div class="col-md-12">
+                                                        <form accept-charset="UTF-8" action="" method="post">
+                                                            <input id="ratings-hidden" name="rating" type="hidden">
+                                                            <textarea class="form-control animated" cols="150" id="new-review" name="comment" placeholder="Değerlendirmenizi buraya giriniz..." rows="15"></textarea>
 
-                   <small class="review-date">March 26, 2017</small>
-               </div>
-           </div>
-       </div>
+                                                            <div class="text-right">
+                                                                <div class="stars starrr" data-rating="0"></div>
+                                                                <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display: none; margin-right: 10px;">
+                                                                    <span class="glyphicon glyphicon-remove"></span>Vazgeç</a>
+                                                                <button class="btn btn-success btn-lg" type="submit">Kaydet</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="reviews">
+                                        <div class="col-md-5 blockquote review-item">
+                                            <div class="col-md-3 text-center">
+                                                <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
+                                                <div class="caption">
+                                                    <small>by <a href="#joe">Joe</a></small>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-9">
+                                                <h4>My awesome review</h4>
+                                                <div class="ratebox text-center" data-id="0" data-rating="5"></div>
+                                                <p class="review-text">My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. </p>
+
+                                                <small class="review-date">March 26, 2017</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 blockquote review-item">
+                                            <div class="col-md-3 text-center">
+                                                <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
+                                                <div class="caption">
+                                                    <small>by <a href="#joe">Joe</a></small>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-9">
+                                                <h4>My awesome review</h4>
+                                                <div class="ratebox text-center" data-id="0" data-rating="5"></div>
+                                                <p class="review-text">My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. </p>
+
+                                                <small class="review-date">March 26, 2017</small>
+                                            </div>
+                                        </div>
+                                    </div>
 
 										<div class="col-sm-12">
-											<span class="title-links">Sosyal Platformlar</span>
+											<span class="title-links">&nbsp;&nbsp;&nbsp;Sosyal Platformlar</span>
 											<ul class="ul-social-links">
 												<li class="li-social-links">
 													<a href="www.facebook.com/shineblue30" data-tootik="Facebook" data-tootik-conf="square"><i class="fa fa-facebook" aria-hidden="true"></i></a>

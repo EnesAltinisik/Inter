@@ -172,7 +172,7 @@ namespace InternshipER.App_Code
             user_id = getUserId(username, password);
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO student_details (user_id,name,email,address,country,department,description,phone,website,age,school) VALUES(@User_id,@Name,@Email,@Address,@Country,@Department,@Description,@Phone,@Website,@Age,@School)"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO student_details (user_id,name,email,adress,country,department,description,phone,website,age,school) VALUES(@User_id,@Name,@Email,@Address,@Country,@Department,@Description,@Phone,@Website,@Age,@School)"))
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@User_id", user_id);
@@ -290,7 +290,7 @@ namespace InternshipER.App_Code
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT address, age, country, department, description, email, name, phone, website, school FROM student_details WHERE user_id = @Id"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT adress, age, country, department, description, email, name, phone, website, school FROM student_details WHERE user_id = @Id"))
                 {
                     List<string> infos = new List<string>();
                     cmd.CommandType = CommandType.Text;

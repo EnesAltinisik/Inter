@@ -15,6 +15,15 @@ namespace InternshipER
         {
             int user_id = getCompanyId();
             getCompanyInfo(user_id);
+            //Öğrenci için company sayfasında saklanacak objeler.
+            if(Session["id"]==null)
+            if (Database.isStudent(Session["id"].ToString())){
+                postReviewBox.Visible = true;
+            }
+            else // Şirket için görüntülenme ayarları
+            {
+                postReviewBox.Visible = false;
+            }
             if (!IsPostBack)
             {
                 getCompanyInfo(user_id);
@@ -75,22 +84,42 @@ namespace InternshipER
         }
         protected void getCompanyInfo(int user_id)
         {
+            
+            //mkutlu düzeltme gerekebilir. 
             List<String> infos = Database.companyInfo(user_id);
-            description.Text = infos[1];
-            name.Text = infos[1];
-            email.Text = infos[2];
-            address.Text = infos[3];
-            tel.Text = infos[4];
-            website.Text = infos[5];
-            title.Text = infos[6];
+            if (infos.Count > 1)
+            {
+                description.Text = infos[1];
+                name.Text = infos[1];
+                email.Text = infos[2];
+                address.Text = infos[3];
+                tel.Text = infos[4];
+                website.Text = infos[5];
+                title.Text = infos[6];
 
-            companyDescription.Value = infos[1];
-            companyName.Value = infos[1];
-            companyEmail.Value = infos[2];
-            companyAddress.Value = infos[3];
-            companyPhone.Value = infos[4];
-            companyWebsite.Value = infos[5];
-            companyTitle.Value = infos[6];
+                companyDescription.Value = infos[1];
+                companyName.Value = infos[1];
+                companyEmail.Value = infos[2];
+                companyAddress.Value = infos[3];
+                companyPhone.Value = infos[4];
+                companyWebsite.Value = infos[5];
+                companyTitle.Value = infos[6];
+            }
+            else
+            {
+                if (Database.isStudent(user_id.ToString()))
+                {
+                    Response.Redirect("student.aspx");
+                }
+                else
+                {
+                    Response.Redirect("company.aspx");
+                }
+            }
+        }
+        protected void SaveReviewClick_Event(object sender, EventArgs e)
+        {
+            Database.saveEvaluation(Session["id"].ToString(), Request.QueryString["UserId"].ToString(), reviewTitle.Value, newReview.Value, int.Parse(ratingsHidden.Value.ToString()), "");
         }
         protected void updateCompanyProfile(object sender, EventArgs e)
         {

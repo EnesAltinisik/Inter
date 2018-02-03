@@ -56,7 +56,7 @@
                                         </div>
                                     </div>
                                     <div class="row" style="margin-top: 40px; background-color="">
-                                        <div class="col-md-12">
+                                        <div id="postReviewBox" runat="server" class="col-md-12">
                                             <div class="well well-sm">
                                                 <div class="text-right">
                                                     <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Değerlendirme Yaz</a>
@@ -64,17 +64,17 @@
 
                                                 <div class="row" id="post-review-box" style="display: none;">
                                                     <div class="col-md-12">
-                                                        <form accept-charset="UTF-8" action="" method="post">
-                                                            <input id="ratings-hidden" name="rating" type="hidden">
-                                                            <textarea class="form-control animated" cols="150" id="new-review" name="comment" placeholder="Değerlendirmenizi buraya giriniz..." rows="15"></textarea>
+                                                            <input runat="server" id="ratingsHidden" name="rating" type="hidden">
+                                                            <input type="text" runat="server" class="form-control" id="reviewTitle" placeholder="Değerlendirme Başlığı">
+                                                            <textarea class="form-control animated" cols="15" runat="server" id="newReview" name="comment" placeholder="Değerlendirmenizi buraya giriniz..." rows="15"></textarea>
 
                                                             <div class="text-right">
                                                                 <div class="stars starrr" data-rating="0"></div>
                                                                 <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display: none; margin-right: 10px;">
                                                                     <span class="glyphicon glyphicon-remove"></span>Vazgeç</a>
-                                                                <button class="btn btn-success btn-lg" type="submit">Kaydet</button>
+                                                                <asp:Button class="btn btn-success btn-lg" type="submit" runat="server" id="reviewSubmit" onclick="SaveReviewClick_Event" causesvalidation="False" ondatabinding="SaveReviewClick_Event" usesubmitbehavior="False" tabindex="4" Text="Kaydet"></asp:button>
+
                                                             </div>
-                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>

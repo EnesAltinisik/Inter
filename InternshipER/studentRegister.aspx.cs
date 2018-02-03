@@ -21,9 +21,16 @@ namespace InternshipER
         }
         protected void registerClick_Event(object sender, EventArgs e)
         {
+            try
+            {
+                Database.registerStudent(studentName.Value, userName.Value, psw.Value, email.Value);
+                Response.Redirect("login.aspx");
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Kayıt Başarısız! Bilgileri kontrol ediniz.')</script>");
 
-            Response.Write("<script>alert('Data inserted successfully')</script>");
-            Database.registerStudent(studentName.Value, userName.Value, psw.Value, email.Value);
+            }
         }
         protected void cancelbtn_Click(object sender, EventArgs e)
         {

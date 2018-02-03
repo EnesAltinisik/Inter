@@ -76,6 +76,51 @@ namespace InternshipER {
         protected global::System.Web.UI.WebControls.Label tel;
         
         /// <summary>
+        /// postReviewBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl postReviewBox;
+        
+        /// <summary>
+        /// ratingsHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden ratingsHidden;
+        
+        /// <summary>
+        /// reviewTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText reviewTitle;
+        
+        /// <summary>
+        /// newReview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea newReview;
+        
+        /// <summary>
+        /// reviewSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button reviewSubmit;
+        
+        /// <summary>
         /// searchTable control.
         /// </summary>
         /// <remarks>

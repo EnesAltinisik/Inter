@@ -382,6 +382,28 @@ namespace InternshipER.App_Code
                 }
             }
         }
+        internal static void saveEvaluation(String reviewer,String target,String title, String message, int rate, String jobId)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO review (target, reviewer, message ,grade, title, rate, date, job_id) VALUES(@Target, @Reviewer, @Message ,@Grade, @Title, @Rate, @Date, @JobId)"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Target", target);
+                    cmd.Parameters.AddWithValue("@Reviewer", reviewer);
+                    cmd.Parameters.AddWithValue("@Message", message);
+                    cmd.Parameters.AddWithValue("@Grade", rate);
+                    cmd.Parameters.AddWithValue("@Title", title);
+                    cmd.Parameters.AddWithValue("@Rate", rate);
+                    cmd.Parameters.AddWithValue("@Date", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@JobId", jobId);
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
         internal static DataTable GetAssignedJobs(String user_id)
         {
             using (NpgsqlConnection con = connect())

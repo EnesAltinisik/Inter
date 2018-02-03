@@ -8,16 +8,7 @@
         <table  class="table table-striped custab">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Firma</th>
-                    <th>Pozisyon</th>
-                    <th>Açıklama</th>
-                    <th>Lokasyon</th>
-                    <th>İlan Tarihi</th>
-                    <th>Son Tarihi</th>
-                    <th>Staj Dönemi</th>
-
-                    <th class="text-center"></th>
+                  <asp:PlaceHolder ID = "searchTableHeader" runat="server" />
                 </tr>
             </thead>
             <asp:PlaceHolder ID = "searchTable" runat="server" />

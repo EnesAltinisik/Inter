@@ -53,3 +53,6 @@ $(function(){
     ratingsField.val(value);
   });
 });
+function openModal() {
+    $('#myModal2').modal('show');
+}

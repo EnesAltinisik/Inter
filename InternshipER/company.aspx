@@ -149,15 +149,10 @@
                                         <i class="fa fa-check" aria-hidden="true"></i>
                                         <span class="text-available">Onaylanmış Profil</span>
                                     </div>
-                                    <a data-toggle="modal" data-target="#myModal2">
                                         <div class="download-resume">
                                             <i class="fa fa-plus" aria-hidden="true"></i>
-                                            <span class="text-download" >YENİ İLAN</span>
-                                            <asp:label runat="server" id="deneme"/>
-
-                                           
+                                            <asp:LinkButton ID="JobOrFav" runat="server" OnClick="FavouritesClick_Event" causesvalidation="False" ondatabinding="FavouritesClick_Event" usesubmitbehavior="False"></asp:LinkButton>                                        
                                         </div>
-                                    </a>
                                     <div>
                                         <br />
                                         <span class="title-links">Sosyal Platformlar</span>
@@ -199,14 +194,14 @@
     </div>
     <!--Change profile popup-->
     <script src="Scripts/WebForms/Company.js"></script>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" runat="server" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                     <h4 class="modal-title" id="myModalLabel">Profil Düzenleme</h4>
                 </div>
-                <div class="modal hide" id="myModal">
+                <div class="modal hide" id="myModal3">
 
                     <button type="button" class="close" data-dismiss="modal">x</button>
                     <h3>Login to MyWebsite.com</h3>
@@ -264,6 +259,11 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+    function openModal() {
+        $('#myModal2').modal('show');
+    }
+</script>
     <script src="Scripts/WebForms/Company.js"></script>
     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">

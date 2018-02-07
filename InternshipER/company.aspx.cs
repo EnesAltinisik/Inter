@@ -17,22 +17,29 @@ namespace InternshipER
             int user_id = getCompanyId();
             getCompanyInfo(user_id);
             //Öğrenci için company sayfasında saklanacak objeler.
-            if (Session["id"] != null) { 
-                if (Database.isStudent(Session["id"].ToString())) {
-                    if (Database.favouriteCheck(Session["id"].ToString(), Request.QueryString["UserId"])) { }
-                    flag = true;
-                }
-                else {
-                    flag = false;
-                }
-                 
+            if (Session["id"] != null) {
+                if (Database.isStudent(Session["id"].ToString()))
+                {
+                    if (Database.favouriteCheck(Session["id"].ToString(), Request.QueryString["UserId"]))
+                    {
+                        flag = true;
+                        JobOrFav.Text = "Favorilerden Çıkar";
+                    }
+                    else
+                    {
+                        flag = false;
+                        JobOrFav.Text = "Favorilere Ekle";
+                    }
+                    postReviewBox.Visible = true;
 
-                postReviewBox.Visible = true;
+                }
+                else // Şirket için görüntülenme ayarları
+                {
+                    postReviewBox.Visible = false;
+                    JobOrFav.Text = "Yeni İlan";
+                }
             }
-            else // Şirket için görüntülenme ayarları
-            {
-                postReviewBox.Visible = false;
-            }
+           
             if (!IsPostBack)
             {
                 getCompanyInfo(user_id);
@@ -145,9 +152,16 @@ namespace InternshipER
         }
         protected void FavouritesClick_Event(object sender, EventArgs e)
         {
-          
-                Database.organizeFavourite(Session["id"].ToString(), Request.QueryString["UserId"],flag);
-         
+            if (Database.isStudent(Session["id"].ToString()))
+            {
+                Response.Write("<script>alert('Kayıt Başarısız! Bilgileri kontrol ediniz.')</script>");
+                Database.organizeFavourite(Session["id"].ToString(), Request.QueryString["UserId"], flag);
+                Response.Redirect(Request.RawUrl);
+            }
+            else // Şirket için görüntülenme ayarları
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+            }
         }
 
 

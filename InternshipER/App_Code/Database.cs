@@ -395,9 +395,10 @@ namespace InternshipER.App_Code
         {
             String query;
             if (flag)
-                query = "INSERT INTO favourites (student, company) VALUES(@Student, @Company)";
-            else
                 query = "DELETE FROM favourites WHERE student=@Student and company=@Company";
+            else
+                query = "INSERT INTO favourites (student, company) VALUES(@Student, @Company)";
+
 
             using (NpgsqlConnection con = connect())
             {

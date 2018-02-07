@@ -430,7 +430,7 @@ namespace InternshipER.App_Code
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO review (target, reviewer, message ,grade, title, rate, date, job_id) VALUES(@Target, @Reviewer, @Message ,@Grade, @Title, @Rate, @Date, @JobId)"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO review (target, reviewer, message , title, grade, date, job_id) VALUES(@Target, @Reviewer, @Message , @Title, @Grade, @Date, @JobId)"))
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@Target", target);
@@ -438,7 +438,6 @@ namespace InternshipER.App_Code
                     cmd.Parameters.AddWithValue("@Message", message);
                     cmd.Parameters.AddWithValue("@Grade", rate);
                     cmd.Parameters.AddWithValue("@Title", title);
-                    cmd.Parameters.AddWithValue("@Rate", rate);
                     cmd.Parameters.AddWithValue("@Date", DateTime.Now);
                     cmd.Parameters.AddWithValue("@JobId", jobId);
                     cmd.Connection = con;

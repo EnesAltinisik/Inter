@@ -18,7 +18,7 @@ namespace InternshipER
             string user_id = "0";
             string param;
 
-            param = Request.QueryString["UserId"];
+            user_id = Request.QueryString["UserId"];
             if (user_id == null)
             {
                 if (Session["id"] != null && !Session["id"].Equals(""))
@@ -42,16 +42,19 @@ namespace InternshipER
             if(jobid!=null)
                 Database.jobAdd2User(jobid, user_id, "", new DateTime());  /* TODO database sop ve date eklemesi ve mevcutsa silinmesi*/
 
+
+
             if (!this.IsPostBack)
             {
-                DataTable dt=null;
+
+                DataTable dt = null;
                 param = Request.QueryString["param"];
-                StringBuilder html2=null;
+                StringBuilder html2 = null;
                 if (param == null)
                 {
 
                     //Populating a DataTable from database.
-                    dt=Database.GetJob();
+                    dt = Database.GetJob();
 
                     html2 = new StringBuilder();
 
@@ -70,7 +73,7 @@ namespace InternshipER
                 else if (param.Equals("1")) // Student
                 {
                     //Populating a DataTable from database.
-                    dt=Database.GetAllUsers();
+                    dt = Database.GetAllUsers();
 
                     html2 = new StringBuilder();
 
@@ -85,7 +88,7 @@ namespace InternshipER
                 else if (param.Equals("2")) //Company
                 {
                     //Populating a DataTable from database.
-                     dt = Database.GetAllCompanies();
+                    dt = Database.GetAllCompanies();
 
                     html2 = new StringBuilder();
 
@@ -96,9 +99,9 @@ namespace InternshipER
                     html2.Append("<th> Telefon </th>");
                     html2.Append("<th> Lokasyon </th>");
                     html2.Append("<th class=\"text-center\"></th>");
-                    
+
                 }
-                
+
 
                 //Building an HTML string.
                 StringBuilder html = new StringBuilder();
@@ -115,7 +118,7 @@ namespace InternshipER
                         html.Append(row[column.ColumnName]);
                         html.Append("</td>");
                     }
-                    if(!param.Equals("2") && !param.Equals("1"))
+                    if (param==null)
                     {
                         html.Append("<td>  <a class='btn btn-info btn-xs' href=\"search?UserId=");
                         html.Append(user_id);
@@ -124,7 +127,7 @@ namespace InternshipER
                         html.Append("\" >Başvur</a> </td>");
 
                     }
-                   
+
                     html.Append("</tr>");
                 }
 
@@ -132,10 +135,9 @@ namespace InternshipER
                 //Append the HTML string to Placeholder.
                 searchTable.Controls.Add(new LiteralControl { Text = html.ToString() });
                 searchTableHeader.Controls.Add(new LiteralControl { Text = html2.ToString() });
-
             }
 
-               
+
         }
         protected void jobAdd2User(object sender, EventArgs e)
         {

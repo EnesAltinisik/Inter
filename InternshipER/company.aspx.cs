@@ -16,7 +16,7 @@ namespace InternshipER
             int user_id = getCompanyId();
             getCompanyInfo(user_id);
             //Öğrenci için company sayfasında saklanacak objeler.
-            if(Session["id"]==null)
+            if(Session["id"]!=null)
             if (Database.isStudent(Session["id"].ToString())){
                 postReviewBox.Visible = true;
             }
@@ -119,7 +119,11 @@ namespace InternshipER
         }
         protected void SaveReviewClick_Event(object sender, EventArgs e)
         {
-            Database.saveEvaluation(Session["id"].ToString(), Request.QueryString["UserId"].ToString(), reviewTitle.Value, newReview.Value, int.Parse(ratingsHidden.Value.ToString()), "");
+            int rating = 0;
+            if (ratingsHidden == null || ratingsHidden.Value.Equals(""));
+            else
+                rating = int.Parse(ratingsHidden.Value);
+            Database.saveEvaluation(Session["id"].ToString(), Request.QueryString["UserId"], reviewTitle.Value, newReview.Value, rating, "");
         }
         protected void updateCompanyProfile(object sender, EventArgs e)
         {

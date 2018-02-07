@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" type="text/css" href="Content/Company.css">
-    <script src="Scripts/Company.js"></script>
+    <script src="Scripts/WebForms/Company.js"></script>
     <script src="https://use.fontawesome.com/bfdd1d98a1.js"></script>
     <div class="container">
         <div class="row">
@@ -64,7 +64,7 @@
 
                                                 <div class="row" id="post-review-box" style="display: none;">
                                                     <div class="col-md-12">
-                                                            <input runat="server" id="ratingsHidden" name="rating" type="hidden">
+                                                            <input runat="server" id="ratingsHidden" name="rating" value="" type="hidden">
                                                             <input type="text" runat="server" class="form-control" id="reviewTitle" placeholder="Değerlendirme Başlığı">
                                                             <textarea class="form-control animated" cols="15" runat="server" id="newReview" name="comment" placeholder="Değerlendirmenizi buraya giriniz..." rows="15"></textarea>
 

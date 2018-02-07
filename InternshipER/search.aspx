@@ -1,17 +1,30 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="search.aspx.cs" Inherits="InternshipER.searchForm" %>
 
 <asp:Content ID="Search" ContentPlaceHolderID="MainContent" runat="server">
-    
+    <script src="Scripts/WebForms/Search.js"></script>
     <link rel="stylesheet" type="text/css" href="Content/Search.css">
     <div class="container">
     <div class="row col-md-12 col-md-offset-1 custyle">
-        <table  class="table table-striped custab">
+          <div class="col-md-3">
+            <form action="#" method="get">
+                <div class="input-group">
+                    <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                    <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <table  class="table table-striped custab table-list-search">
             <thead>
                 <tr>
                   <asp:PlaceHolder ID = "searchTableHeader" runat="server" />
                 </tr>
             </thead>
+            <tbody>
             <asp:PlaceHolder ID = "searchTable" runat="server" />
+            </tbody>
         </table>
     </div>
 </div>

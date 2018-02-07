@@ -391,6 +391,46 @@ namespace InternshipER.App_Code
                 }
             }
         }
+        public static void organizeFavourite(String studentId, String companyId, Boolean flag)
+        {
+            String query;
+            if (flag)
+                query = "INSERT INTO favourites (student, company) VALUES(@Student, @Company)";
+            else
+                query = "DELETE FROM favourites WHERE student=@Student and company=@Company";
+
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand(query))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Student", studentId);
+                    cmd.Parameters.AddWithValue("@Company", companyId);
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+        public static bool favouriteCheck(String studentId, String companyId)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT count(*) FROM favourites WHERE student=@Student and company=@Company"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Student", studentId);
+                    cmd.Parameters.AddWithValue("@Company", companyId);
+                    cmd.Connection = con;
+                    con.Open();
+                    int count = int.Parse(cmd.ExecuteScalar().ToString());
+                    con.Close();
+                    if (count > 0) return true;
+                    else return false;
+                }
+            }
+        }
         public static void jobAdd2User(string job_id, String user_id, string sop, DateTime date)
         {
             using (NpgsqlConnection con = connect())

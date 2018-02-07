@@ -152,7 +152,10 @@
                                     <a data-toggle="modal" data-target="#myModal2">
                                         <div class="download-resume">
                                             <i class="fa fa-plus" aria-hidden="true"></i>
-                                            <span class="text-download">YENİ İLAN</span>
+                                            <span class="text-download" >YENİ İLAN</span>
+                                            <asp:label runat="server" id="deneme"/>
+
+                                           
                                         </div>
                                     </a>
                                     <div>

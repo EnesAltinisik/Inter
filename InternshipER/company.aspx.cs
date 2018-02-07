@@ -11,13 +11,22 @@ namespace InternshipER
 {
     public partial class companyForm : System.Web.UI.Page
     {
+        bool flag;
         protected void Page_Load(object sender, EventArgs e)
         {
             int user_id = getCompanyId();
             getCompanyInfo(user_id);
             //Öğrenci için company sayfasında saklanacak objeler.
-            if(Session["id"]!=null)
-            if (Database.isStudent(Session["id"].ToString())){
+            if (Session["id"] != null) { 
+                if (Database.isStudent(Session["id"].ToString())) {
+                    if (Database.favouriteCheck(Session["id"].ToString(), Request.QueryString["UserId"])) { }
+                    flag = true;
+                }
+                else {
+                    flag = false;
+                }
+                 
+
                 postReviewBox.Visible = true;
             }
             else // Şirket için görüntülenme ayarları
@@ -134,6 +143,13 @@ namespace InternshipER
         {
             Database.createNewJob(getCompanyId().ToString(), jobTitle.Value, jobDesc.Value, jobLocation.Value, true);
         }
+        protected void FavouritesClick_Event(object sender, EventArgs e)
+        {
+          
+                Database.organizeFavourite(Session["id"].ToString(), Request.QueryString["UserId"],flag);
+         
+        }
+
 
     }
 }

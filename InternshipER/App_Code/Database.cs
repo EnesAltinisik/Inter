@@ -109,7 +109,29 @@ namespace InternshipER.App_Code
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("select user_id, name, email, website, telephone,address from company_details"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select student_id, name, email, website, telephone,address from company_details"))
+                {
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        con.Open();
+                        sda.SelectCommand = cmd;
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        public static DataTable GetFavorites()
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select user_id , name from company_details"))
                 {
                     using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
                     {

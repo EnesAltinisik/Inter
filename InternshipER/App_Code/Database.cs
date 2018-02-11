@@ -63,6 +63,28 @@ namespace InternshipER.App_Code
                 }
             }
         }
+        
+        internal static DataTable GetJobsAttendees(String jobId)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select job_student.user_id, name, email, school, department from student_details inner join job_student on student_details.user_id = job_student.user_id where job_student.job_id=@jobId"))
+                {
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        cmd.Parameters.AddWithValue("@jobId", jobId);
+                        con.Open();
+                        sda.SelectCommand = cmd;
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+        }
         internal static DataTable GetUserJobWithTitleAndLocation(int user_id)
         {
             using (NpgsqlConnection con = connect())

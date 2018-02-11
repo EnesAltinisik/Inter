@@ -45,13 +45,44 @@ namespace InternshipER
             html2.Append("<div id = \"collapse" + num + "\" class=\"panel - collapse collapse\">");
             html2.Append("<div class=\"panel - body\">");
             html2.Append("");// Başvuranların iplement edilmesi
+            html2.Append("<table  class=\"table table-striped custab table-list-search\">");
+            html2.Append("<thead>");
+            html2.Append("<tr>");
             html2.Append("<th>#</th>");
             html2.Append("<th> İsim </th>");
             html2.Append("<th> Email </th>");
             html2.Append("<th> Okul </th>");
             html2.Append("<th> Bölüm </th>");
             html2.Append("<th class=\"text-center\"></th>");
+            html2.Append("</tr>");
+            html2.Append("</thead>");
+            html2.Append("<tbody>");
+            DataTable dt = Database.GetJobsAttendees(jobId);
 
+            //Building the Data rows.
+            foreach (System.Data.DataRow row in dt.Rows)
+            {
+                html2.Append("<tr>");
+                foreach (System.Data.DataColumn column in dt.Columns)
+                {
+                    html2.Append("<td>");
+                    html2.Append(row[column.ColumnName]);
+                    html2.Append("</td>");
+                }
+                //if (param == null)
+                //{
+                //    html.Append("<td>  <a class='btn btn-info btn-xs' href=\"search?UserId=");
+                //    //html.Append(user_id);
+                //    html.Append("&jobid=");
+                //    html.Append(row["job_id"]);
+                //    html.Append("\" >Başvur</a> </td>");
+
+                //}
+
+                html2.Append("</tr>");
+            }
+            html2.Append("</tbody>");
+            html2.Append("</table>");
             html2.Append("</div>");
             html2.Append("</div>");
             html2.Append("</div>");

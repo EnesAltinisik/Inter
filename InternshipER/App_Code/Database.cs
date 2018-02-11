@@ -63,6 +63,27 @@ namespace InternshipER.App_Code
                 }
             }
         }
+        internal static DataTable GetUserJobWithTitleAndLocation(int user_id)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select job_title, location, job_id from jobs inner join users on cast (jobs.user_id as bigint)=users.user_id where users.user_id=@UserId"))
+                {
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        cmd.Parameters.AddWithValue("@UserId", user_id);
+                        con.Open();
+                        sda.SelectCommand = cmd;
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+        }
         public static DataTable GetJob()
         {
             using (NpgsqlConnection con = connect())
@@ -127,15 +148,16 @@ namespace InternshipER.App_Code
 
         }
 
-        public static DataTable GetFavorites()
+        public static DataTable GetFavorites(String StudentId)
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("select user_id , name from company_details"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select company from favourites where student = @Student"))
                 {
                     using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
                     {
                         cmd.Connection = con;
+                        cmd.Parameters.AddWithValue("@Student", StudentId);
                         con.Open();
                         sda.SelectCommand = cmd;
                         using (DataTable dt = new DataTable())

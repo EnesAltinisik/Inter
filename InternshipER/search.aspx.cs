@@ -43,6 +43,13 @@ namespace InternshipER
                 Database.jobAdd2User(jobid, user_id, "", new DateTime());  /* TODO database sop ve date eklemesi ve mevcutsa silinmesi*/
 
 
+            /* dropdownlist.DataSource=Database.companyLocation();
+             dropdownlist.DataTextField = "location";
+             dropdownlist.DataBind();*/
+
+                dropdownlist.Items.Insert(0, Database.companyLocation(0));/*TODO kolon elemanlarini tek tek okuma islemi eksik*/
+                dropdownlist.Items.Insert(1, Database.companyLocation(0));
+
 
             if (!this.IsPostBack)
             {

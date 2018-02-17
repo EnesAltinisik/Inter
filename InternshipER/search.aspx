@@ -12,7 +12,12 @@
                     <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
                     <span class="input-group-btn">
                         <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                          <asp:Label ID="Label4" text="Location" runat="server"    ForeColor="#000000"></asp:Label>
+                           
                     </span>
+                         <asp:DropDownList id="dropdownlist" runat="server"> 
+                          </asp:DropDownList>
+          
                 </div>
             </form>
         </div>
@@ -28,6 +33,8 @@
         </table>
     </div>
 </div>
+
+
     <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

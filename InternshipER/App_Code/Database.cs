@@ -367,6 +367,62 @@ namespace InternshipER.App_Code
                 }
             }
         }
+
+        public static String companyLocation(int i)
+        {
+            int temp = 0;
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT location FROM jobs"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    con.Open();
+                    NpgsqlDataReader values = cmd.ExecuteReader();
+                    if (values.Read())
+                    {
+                            return values[i].ToString();
+
+                    }
+                    con.Close();
+                    return null;
+                }
+             }
+        }
+
+
+        /*public static List<string> companyLocation()
+        {
+            int temp = 0;
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT location FROM jobs"))
+                {
+                    List<string> locations = new List<string>();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    con.Open();
+                    NpgsqlDataReader values = cmd.ExecuteReader();
+                    while (values.Read())
+                    {
+                        foreach (string prime in locations)
+                        {
+                            if (values[temp].ToString().Equals(prime))
+                            {
+
+                            }
+                            else
+                            {
+                                locations.Add(values[temp].ToString());
+                            }
+                        }
+                        temp++;
+                    }
+                    con.Close();
+                    return locations;
+                }
+            }
+        }*/
         public static void updateCompanyProfile(int userId, String companyName, String title, String website, String email, String description, String tel, String address)
         {
             using (NpgsqlConnection con = connect())

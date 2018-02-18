@@ -152,7 +152,7 @@ namespace InternshipER.App_Code
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("select student_id, name, email, website, telephone,address from company_details"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select user_id, name, email, website, telephone,address from company_details"))
                 {
                     using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
                     {
@@ -503,7 +503,7 @@ namespace InternshipER.App_Code
                     cmd.Parameters.AddWithValue("@description", jobDesc);
                     cmd.Parameters.AddWithValue("@location", jobLocation);
                     cmd.Parameters.AddWithValue("@status", jobStatus);
-                    cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyyMMddHHmmss"));
+                    cmd.Parameters.AddWithValue("@date", DateTime.Now);
                     cmd.Connection = con;
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -599,7 +599,7 @@ namespace InternshipER.App_Code
                     cmd.Parameters.AddWithValue("@Message", message);
                     cmd.Parameters.AddWithValue("@Grade", rate);
                     cmd.Parameters.AddWithValue("@Title", title);
-                    cmd.Parameters.AddWithValue("@Date", DateTime.Now.ToString("yyyyMMddHHmmss"));
+                    cmd.Parameters.AddWithValue("@Date", DateTime.Now);
                     cmd.Parameters.AddWithValue("@JobId", jobId);
                     cmd.Connection = con;
                     con.Open();
@@ -672,6 +672,49 @@ namespace InternshipER.App_Code
                 tableList[1] = dt2;
                 return tableList;
             
+        }
+        public static DataTable GetLastReviews(String user_id)
+        {
+            DataTable dt = new DataTable();
+          
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select date,reviewer,target, title, message, grade from review where target=@UserId ORDER BY date DESC LIMIT 2"))
+                {
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                    {
+                        List<string> infos = new List<string>();
+                       // List<string> temp1 = new List<string>();
+                       // List<string> temp2 = new List<string>();
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@UserId", user_id);
+                        cmd.Connection = con;
+                        con.Open();
+                       /* NpgsqlDataReader values = cmd.ExecuteReader();
+                        while (values.Read())
+                        {
+                            infos.Add(values[0].ToString());//date
+                            infos.Add(values[1].ToString());//reviewer
+                            infos.Add(values[2].ToString());//target
+                            infos.Add(values[3].ToString());//title
+                            infos.Add(values[4].ToString());//message
+                            infos.Add(values[5].ToString());//grade
+                        }
+                         con.Close();
+                         return infos;*/
+                         //cmd.Connection = con;
+                         //cmd.Parameters.AddWithValue("@UserId", user_id);
+                         sda.SelectCommand = cmd;
+                         using (dt)
+                         {
+                             sda.Fill(dt);
+
+                         }
+                        return dt;
+                    }
+                }
+            }
+
         }
     }
 }

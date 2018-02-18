@@ -81,37 +81,37 @@
 
                                         </div>
                                     </div>
+
+
                                     <div class="reviews">
                                         <div class="col-md-5 blockquote review-item">
                                             <div class="col-md-3 text-center">
                                                 <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
                                                 <div class="caption">
-                                                    <small>by <a href="#joe">Joe</a></small>
+                                                    <small>by<a href="#reviewer"> <asp:Label ID="labelname4" runat="server" Text="Label"></asp:Label></a></small>
                                                 </div>
 
                                             </div>
                                             <div class="col-md-9">
-                                                <h4>My awesome review</h4>
+                                                <h4><asp:Label ID="labelname1" runat="server" Text="Label"></asp:Label></h4>
                                                 <div class="ratebox text-center" data-id="0" data-rating="5"></div>
-                                                <p class="review-text">My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. </p>
-
-                                                <small class="review-date">March 26, 2017</small>
+                                                <p class="review-text"><asp:Label ID="labelname2" runat="server" Text="Label"></asp:Label></p>
+                                                <small class="review-date"><asp:Label ID="labelname3" runat="server" Text="Label"></asp:Label></small>
                                             </div>
                                         </div>
                                         <div class="col-md-5 blockquote review-item">
                                             <div class="col-md-3 text-center">
                                                 <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
                                                 <div class="caption">
-                                                    <small>by <a href="#joe">Joe</a></small>
+                                                    <small>by<a href="#reviewer"> <asp:Label ID="labelname8" runat="server" Text="Label"></asp:Label></a></small>
                                                 </div>
 
                                             </div>
                                             <div class="col-md-9">
-                                                <h4>My awesome review</h4>
+                                                <h4><asp:Label ID="labelname5" runat="server" Text="Label"></asp:Label></h4>
                                                 <div class="ratebox text-center" data-id="0" data-rating="5"></div>
-                                                <p class="review-text">My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. </p>
-
-                                                <small class="review-date">March 26, 2017</small>
+                                                <p class="review-text"><asp:Label ID="labelname6" runat="server" Text="Label"></asp:Label></p>
+                                                <small class="review-date"><asp:Label ID="labelname7" runat="server" Text="Label"></asp:Label></small>
                                             </div>
                                         </div>
                                     </div>

@@ -145,6 +145,7 @@
     <Content Include="Content\Register.css" />
     <Content Include="Content\Search.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Stream.css" />
     <Content Include="Content\Student.css" />
     <Content Include="home.aspx" />
     <Content Include="favicon.ico" />

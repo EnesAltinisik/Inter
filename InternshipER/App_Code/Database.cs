@@ -17,7 +17,7 @@ namespace InternshipER.App_Code
 {
     public class Database
     {
-        public static SqlConnection _productConn { get; private set; }
+        public static SqlConnection _productConn { get; private set; } //incele
         public static NpgsqlConnection connect()
         {
             String connectionString = ConfigurationManager.ConnectionStrings["internshiper"].ConnectionString;
@@ -62,8 +62,7 @@ namespace InternshipER.App_Code
                     }
                 }
             }
-        }
-        
+        }      
         internal static DataTable GetJobsAttendees(String jobId)
         {
             using (NpgsqlConnection con = connect())
@@ -119,6 +118,7 @@ namespace InternshipER.App_Code
                         sda.SelectCommand = cmd;
                         using (DataTable dt = new DataTable())
                         {
+                           
                             sda.Fill(dt);
                             return dt;
                         }
@@ -169,7 +169,6 @@ namespace InternshipER.App_Code
             }
 
         }
-
         public static DataTable GetFavorites(String StudentId)
         {
             using (NpgsqlConnection con = connect())
@@ -192,8 +191,6 @@ namespace InternshipER.App_Code
             }
 
         }
-
-
         public static int getUserId(String username, String password)
         {
             int user_id;
@@ -498,7 +495,7 @@ namespace InternshipER.App_Code
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO jobs (user_id, job_title, description,location,status) VALUES(@user_id, @job_title, @description,@location,@status)"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO jobs (user_id, job_title, description,location,status,date) VALUES(@user_id, @job_title, @description,@location,@status,@date)"))
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@user_id", userId);
@@ -506,6 +503,7 @@ namespace InternshipER.App_Code
                     cmd.Parameters.AddWithValue("@description", jobDesc);
                     cmd.Parameters.AddWithValue("@location", jobLocation);
                     cmd.Parameters.AddWithValue("@status", jobStatus);
+                    cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyyMMddHHmmss"));
                     cmd.Connection = con;
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -601,7 +599,7 @@ namespace InternshipER.App_Code
                     cmd.Parameters.AddWithValue("@Message", message);
                     cmd.Parameters.AddWithValue("@Grade", rate);
                     cmd.Parameters.AddWithValue("@Title", title);
-                    cmd.Parameters.AddWithValue("@Date", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@Date", DateTime.Now.ToString("yyyyMMddHHmmss"));
                     cmd.Parameters.AddWithValue("@JobId", jobId);
                     cmd.Connection = con;
                     con.Open();
@@ -630,6 +628,50 @@ namespace InternshipER.App_Code
                     }
                 }
             }
+        }
+        public static DataTable[] GetHomeStream()
+        {
+            DataTable[] tableList = new DataTable[2];
+            DataTable dt = new DataTable();
+            DataTable dt2 = new DataTable();
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select date,reviewer,target, title, message, grade from review ORDER BY date DESC LIMIT 10"))
+                {
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        con.Open();
+                        sda.SelectCommand = cmd;
+                        using (dt)
+                        {
+                            sda.Fill(dt);
+
+                        }
+                    }
+                }
+            }
+                using (NpgsqlConnection con = connect())
+                {
+                    using (NpgsqlCommand cmd = new NpgsqlCommand("select date,user_id, job_title, description,location from jobs ORDER BY date DESC LIMIT 10"))
+                    {
+                        using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                        {
+                            cmd.Connection = con;
+                            con.Open();
+                            sda.SelectCommand = cmd;
+                            using (dt2)
+                            {
+                                sda.Fill(dt2);
+
+                            }
+                        }
+                    }
+                }
+                tableList[0] = dt;
+                tableList[1] = dt2;
+                return tableList;
+            
         }
     }
 }

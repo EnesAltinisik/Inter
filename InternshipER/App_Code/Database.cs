@@ -684,27 +684,11 @@ namespace InternshipER.App_Code
                     using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
                     {
                         List<string> infos = new List<string>();
-                       // List<string> temp1 = new List<string>();
-                       // List<string> temp2 = new List<string>();
                         cmd.CommandType = CommandType.Text;
                         cmd.Parameters.AddWithValue("@UserId", user_id);
                         cmd.Connection = con;
                         con.Open();
-                       /* NpgsqlDataReader values = cmd.ExecuteReader();
-                        while (values.Read())
-                        {
-                            infos.Add(values[0].ToString());//date
-                            infos.Add(values[1].ToString());//reviewer
-                            infos.Add(values[2].ToString());//target
-                            infos.Add(values[3].ToString());//title
-                            infos.Add(values[4].ToString());//message
-                            infos.Add(values[5].ToString());//grade
-                        }
-                         con.Close();
-                         return infos;*/
-                         //cmd.Connection = con;
-                         //cmd.Parameters.AddWithValue("@UserId", user_id);
-                         sda.SelectCommand = cmd;
+                        sda.SelectCommand = cmd;
                          using (dt)
                          {
                              sda.Fill(dt);

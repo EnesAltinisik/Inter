@@ -13,6 +13,15 @@ namespace InternshipER {
     public partial class createTest {
         
         /// <summary>
+        /// pnlTextBoxes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlTextBoxes;
+        
+        /// <summary>
         /// questionType control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace InternshipER {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList questionType;
+        
+        /// <summary>
+        /// submitQuestion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button submitQuestion;
         
         /// <summary>
         /// question control.

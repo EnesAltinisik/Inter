@@ -6,6 +6,11 @@
     border-spacing:10px;
 }
 
-#question{
+.addedQuestions {
+    border: 2px solid red;
+    border-spacing: 10px;
+}
 
+#submitQuestion {
+    float:right;
 }

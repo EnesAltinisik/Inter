@@ -12,9 +12,23 @@
         </asp:RadioButtonList>
         <asp:Button ID="submitQuestion" runat="server" OnClick="Submit_onClick" Text="Ekle" CausesValidation="False" OnDataBinding="addChoice_Click" UseSubmitBehavior="False" />
         <asp:Label runat="server" Text="Soru Giriniz:"></asp:Label><br />
-        <asp:TextBox runat="server" ID="question" TextMode="MultiLine" Row="5" Height="100px" Width="200px"></asp:TextBox><br />
-        <asp:Button ID="addChoice" runat="server" OnClick="addChoice_Click"  Text="Seçenek Ekle" CausesValidation="False" OnDataBinding="addChoice_Click" UseSubmitBehavior="False" />
-        
+        <asp:TextBox runat="server" ID="question" TextMode="MultiLine" Row="5" Height="100px" Width="200px"></asp:TextBox><br /><br />
+        <!--<asp:Button ID="addChoice" runat="server" OnClick="addChoice_Click"  Text="Seçenek Ekle" CausesValidation="False" OnDataBinding="addChoice_Click" UseSubmitBehavior="False" />-->
+
+            <span id="choiceAL" runat="server">A : </span>
+            <input id="choiceA" runat="server" type="text" />
+            <br /><br />
+
+            <span id="choiceBL" runat="server">B : </span>
+            <input  id="choiceB" runat="server" type="text" />
+            <br /><br />
+            <span id="choiceCL" runat="server">C : </span>
+            <input  id="choiceC" runat="server" type="text" />
+            <br /><br />
+            <span id="choiceDL" runat="server">D : </span>
+            <input id="choiceD" runat="server" type="text" />
+            <br /><br />
+
         <asp:PlaceHolder ID="multipleChoices" runat="server" />
         
 

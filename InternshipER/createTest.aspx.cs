@@ -14,6 +14,7 @@ namespace InternshipER
         public static int numberOfQuestion = 0;
         public static int numberOfChoice = 0;
         public static string htmlChoice = "";
+        public static string htmlAddedQuestions = "";
         public static TextBox[] textAll = new TextBox[100];
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,16 +26,38 @@ namespace InternshipER
             System.Diagnostics.Debug.WriteLine("deneme");
             if (questionType.SelectedItem.Text == "Çoktan Seçmeli")
             {
-                addChoice.Visible = true;
-                StringBuilder html2 = new StringBuilder();
-                html2.Append(htmlChoice);
-                multipleChoices.Controls.Add(new LiteralControl { Text = html2.ToString() });
-
+                //addChoice.Visible = true;
+                //StringBuilder html2 = new StringBuilder();
+                //html2.Append(htmlChoice);
+                //multipleChoices.Controls.Add(new LiteralControl { Text = html2.ToString() });
+                choiceA.Visible = true;
+                choiceB.Visible = true;
+                choiceC.Visible = true;
+                choiceD.Visible = true;
+                choiceAL.Visible = true;
+                choiceBL.Visible = true;
+                choiceCL.Visible = true;
+                choiceDL.Visible = true;
             }
             else
             {
                 addChoice.Visible = false;
+                choiceA.Visible = false;
+                choiceB.Visible = false;
+                choiceC.Visible = false;
+                choiceD.Visible = false;
+                choiceAL.Visible = false;
+                choiceBL.Visible = false;
+                choiceCL.Visible = false;
+                choiceDL.Visible = false;
             }
+            if (numberOfQuestion > 0)
+            {
+                StringBuilder html = new StringBuilder();
+                html.Append(htmlAddedQuestions);
+                addedQuestions.Controls.Add(new LiteralControl { Text = html.ToString() });
+            }
+
 
         }
 
@@ -42,7 +65,7 @@ namespace InternshipER
 
         protected void addChoice_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("girdiiiiiiiiiii");
+            /*System.Diagnostics.Debug.WriteLine("girdiiiiiiiiiii");
             TextBox MyTextBox = new TextBox();
             //Assigning the textbox ID name 
             MyTextBox.ID = "choice" + numberOfChoice;
@@ -70,7 +93,7 @@ namespace InternshipER
                 btn.Click += new EventHandler(saveValue2textBox );
                 btn.OnClientClick = " saveValue2textBox";
                 pnlTextBoxes.Controls.Add(btn);
-            }
+            }*/
         }
         protected void saveValue2textBox(object sender, EventArgs e)
         {
@@ -91,18 +114,22 @@ namespace InternshipER
         {
             if (questionType.SelectedItem.Text == "Çoktan Seçmeli")
             {
-                String[] choices = new String[numberOfChoice];
-                int i = 0;
-               // System.Diagnostics.Debug.WriteLine(this.GetType().GetField("choice0", BindingFlags.Public | BindingFlags.Instance).GetValue(this).GetType());
-                foreach (TextBox textBox in pnlTextBoxes.Controls.OfType<TextBox>())
-                {
-                    if (!textBox.ID.Equals("question")){
-                        System.Diagnostics.Debug.WriteLine("************"+textBox.Text);
-                        choices[i] += textBox.Text;
-                        
-                        i++;
-                    }
-                }
+                List<string> choices = new List<string>();
+                // int i = 0;
+                //// System.Diagnostics.Debug.WriteLine(this.GetType().GetField("choice0", BindingFlags.Public | BindingFlags.Instance).GetValue(this).GetType());
+                // foreach (TextBox textBox in pnlTextBoxes.Controls.OfType<TextBox>())
+                // {
+                //     if (!textBox.ID.Equals("question")){
+                //         System.Diagnostics.Debug.WriteLine("************"+textBox.Text);
+                //         choices[i] += textBox.Text;
+
+                //         i++;
+                //     }
+                // }
+                if (!choiceA.Value.Equals("")) choices.Add(choiceA.Value);
+                if (!choiceB.Value.Equals("")) choices.Add(choiceA.Value);
+                if (!choiceC.Value.Equals("")) choices.Add(choiceA.Value);
+                if (!choiceD.Value.Equals("")) choices.Add(choiceA.Value);
                 addNewQuestion("Çoktan Seçmeli", question.Text, choices);
             }
             else if (questionType.SelectedItem.Text == "Kod")
@@ -120,12 +147,12 @@ namespace InternshipER
             numberOfChoice = 0;
             addChoice.Visible = false;
         }
-        protected void addNewQuestion(String type, String question, String[] choices)
+        protected void addNewQuestion(String type, String question, List<String> choices)
         {
             numberOfQuestion++;
 
             StringBuilder html = new StringBuilder();
-
+            html.Append(htmlAddedQuestions);
             html.Append("<div class=\"question\" > <br/>");
             //html.Append("<br/>");
             html.Append("<br/>");
@@ -133,7 +160,7 @@ namespace InternshipER
             html.Append("<p>" + question + "</p> <br/>");
             if (choices != null)
             {
-                for(int i = 0; i < choices.Length; i++)
+                for(int i = 0; i < choices.Count; i++)
                 {
                     char choose = (char)('A' + i);
                     html.Append("<br/> "+choose+":"+choices[i]+"<br/>");
@@ -142,7 +169,7 @@ namespace InternshipER
             }
             html.Append("</div>");
             addedQuestions.Controls.Add(new LiteralControl { Text = html.ToString() });
-
+            htmlAddedQuestions = html.ToString();
         }
 
     }

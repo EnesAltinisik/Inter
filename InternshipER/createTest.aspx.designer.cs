@@ -22,6 +22,24 @@ namespace InternshipER {
         protected global::System.Web.UI.WebControls.Panel pnlTextBoxes;
         
         /// <summary>
+        /// Span2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Span2;
+        
+        /// <summary>
+        /// test_name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText test_name;
+        
+        /// <summary>
         /// questionType control.
         /// </summary>
         /// <remarks>
@@ -29,6 +47,15 @@ namespace InternshipER {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList questionType;
+        
+        /// <summary>
+        /// crtTest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button crtTest;
         
         /// <summary>
         /// submitQuestion control.
@@ -40,6 +67,24 @@ namespace InternshipER {
         protected global::System.Web.UI.WebControls.Button submitQuestion;
         
         /// <summary>
+        /// Span1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Span1;
+        
+        /// <summary>
+        /// time control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl time;
+        
+        /// <summary>
         /// question control.
         /// </summary>
         /// <remarks>
@@ -47,15 +92,6 @@ namespace InternshipER {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox question;
-        
-        /// <summary>
-        /// addChoice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addChoice;
         
         /// <summary>
         /// choiceAL control.

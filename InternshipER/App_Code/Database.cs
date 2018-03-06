@@ -364,7 +364,6 @@ namespace InternshipER.App_Code
                 }
             }
         }
-
         public static String companyLocation(int i)
         {
             int temp = 0;
@@ -386,8 +385,6 @@ namespace InternshipER.App_Code
                 }
              }
         }
-
-
         /*public static List<string> companyLocation()
         {
             int temp = 0;
@@ -699,6 +696,72 @@ namespace InternshipER.App_Code
                 }
             }
 
+        }
+        public static void saveTest(string companyId, String testName, int questionNumber, int testTime, List<List<String>> questions)
+        {
+            int test_no;
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO test (company_id, test_name, question_number,time) VALUES(@Companyid, @Testname, @Questionnumber, @Testtime)"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Companyid", companyId);
+                    cmd.Parameters.AddWithValue("@Testname", testName);
+                    cmd.Parameters.AddWithValue("@Questionnumber", questionNumber);
+                    cmd.Parameters.AddWithValue("@Testtime", testTime);
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+
+            test_no = getTestNo(companyId,testName);
+            for(int i = 0; i < questions.Count; i++)
+            {
+                String test_id = test_no.ToString();
+                int no = int.Parse(questions[i][0]);
+                String type = questions[i][1];
+                String question = questions[i][2];
+                String[] choices = questions[i][3].Split('$');
+
+                using (NpgsqlConnection con = connect())
+                {
+                    using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO test_questions (test_id,question,type,choices,no) VALUES(@Testid,@Question,@Type,@Choices,@No)"))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@Testid", test_id);
+                        cmd.Parameters.AddWithValue("@Question", question);
+                        cmd.Parameters.AddWithValue("@Type", type);
+                        cmd.Parameters.AddWithValue("@Choices", choices);
+                        cmd.Parameters.AddWithValue("@No", no);
+                        cmd.Connection = con;
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+
+                    }
+                }
+            }
+        }
+        public static int getTestNo(string companyId, String testName)
+        {
+            int user_id;
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT test_no FROM test WHERE company_id = @Id AND test_name = @Testname"))
+                {
+
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Id", companyId);
+                    cmd.Parameters.AddWithValue("@Testname", testName);
+                    cmd.Connection = con;
+                    con.Open();
+                    user_id = int.Parse(cmd.ExecuteScalar().ToString());
+                    con.Close();
+                }
+            }
+            return user_id;
         }
     }
 }

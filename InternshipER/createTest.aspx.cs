@@ -6,6 +6,8 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using InternshipER.App_Code;
+
 
 namespace InternshipER
 {
@@ -16,6 +18,8 @@ namespace InternshipER
         public static string htmlChoice = "";
         public static string htmlAddedQuestions = "";
         public static TextBox[] textAll = new TextBox[100];
+        public static List<List<String>> questions = new List<List<string>>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -41,7 +45,6 @@ namespace InternshipER
             }
             else
             {
-                addChoice.Visible = false;
                 choiceA.Visible = false;
                 choiceB.Visible = false;
                 choiceC.Visible = false;
@@ -110,7 +113,7 @@ namespace InternshipER
                 }
             }
         }
-        protected void Submit_onClick(object sender, EventArgs e)
+        protected void SubmitQuestion_onClick(object sender, EventArgs e)
         {
             if (questionType.SelectedItem.Text == "Çoktan Seçmeli")
             {
@@ -127,9 +130,9 @@ namespace InternshipER
                 //     }
                 // }
                 if (!choiceA.Value.Equals("")) choices.Add(choiceA.Value);
-                if (!choiceB.Value.Equals("")) choices.Add(choiceA.Value);
-                if (!choiceC.Value.Equals("")) choices.Add(choiceA.Value);
-                if (!choiceD.Value.Equals("")) choices.Add(choiceA.Value);
+                if (!choiceB.Value.Equals("")) choices.Add(choiceB.Value);
+                if (!choiceC.Value.Equals("")) choices.Add(choiceC.Value);
+                if (!choiceD.Value.Equals("")) choices.Add(choiceD.Value);
                 addNewQuestion("Çoktan Seçmeli", question.Text, choices);
             }
             else if (questionType.SelectedItem.Text == "Kod")
@@ -145,12 +148,18 @@ namespace InternshipER
                 addNewQuestion("Ses Kaydı", question.Text, null);
             }
             numberOfChoice = 0;
-            addChoice.Visible = false;
+        }
+        protected void submitTest_onClick(object sender, EventArgs args)
+        {
+            int testTime = int.Parse(time.Value);
+            String testName = test_name.Value;
+
+            Database.saveTest(Session["id"].ToString(), testName, numberOfQuestion, testTime, questions);
         }
         protected void addNewQuestion(String type, String question, List<String> choices)
         {
             numberOfQuestion++;
-
+            String choiceBuild = "";
             StringBuilder html = new StringBuilder();
             html.Append(htmlAddedQuestions);
             html.Append("<div class=\"question\" > <br/>");
@@ -164,12 +173,19 @@ namespace InternshipER
                 {
                     char choose = (char)('A' + i);
                     html.Append("<br/> "+choose+":"+choices[i]+"<br/>");
+                    choiceBuild += choices[i] + " $ ";
                 }
 
             }
             html.Append("</div>");
             addedQuestions.Controls.Add(new LiteralControl { Text = html.ToString() });
             htmlAddedQuestions = html.ToString();
+            List<String> questionElement = new List<string>();
+            questionElement.Add(numberOfQuestion.ToString());
+            questionElement.Add(type);
+            questionElement.Add(question);
+            questionElement.Add(choiceBuild);
+            questions.Add(questionElement);
         }
 
     }

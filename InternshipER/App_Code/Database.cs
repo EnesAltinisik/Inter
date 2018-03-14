@@ -210,6 +210,27 @@ namespace InternshipER.App_Code
             }
             return user_id;
         }
+        public static DataTable GetMessage(string user)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select message.from, message.message from message where message.to='" + user+"';"))
+                {
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        con.Open();
+                        sda.SelectCommand = cmd;
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+
+        }
         public static void registerCompany(string companyName, String username, String password, String email)
         {
             int user_id;

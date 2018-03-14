@@ -153,6 +153,10 @@
                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                             <asp:LinkButton ID="JobOrFav" runat="server" OnClick="FavouritesClick_Event" causesvalidation="False" ondatabinding="FavouritesClick_Event" usesubmitbehavior="False"></asp:LinkButton>                                        
                                         </div>
+                                         <div class="download-resume">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                            <asp:LinkButton ID="videoTalk" runat="server" OnClick="CompanyVideoTalk" causesvalidation="False" ondatabinding="CompanyVideoTalk" usesubmitbehavior="False"></asp:LinkButton>                                        
+                                        </div>
                                     <div>
                                         <br />
                                         <span class="title-links">Sosyal Platformlar</span>
@@ -312,4 +316,42 @@
             </div>
         </div>
     </div>
+
+    <script src="Scripts/WebForms/Company.js"></script>
+    <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel4">Yeni Mülakat Daveti Oluştur</h4>
+                </div>
+                <div class="modal-body" align="center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="usr">Mülakatın yapılacağı poziyon </label>
+                                    <input type="text" value="" runat="server" class="form-control" id="Text1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment">Mülakat hakkında bilgi</label>
+                                    <textarea runat="server" value="" class="form-control" rows="5" id="Textarea1"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="usr">Mülakat Tarihi ve Saati</label>
+                                    <input type="text" runat="server" value="" class="form-control" id="Text2">
+                                </div>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button type="submit" runat="server" ID="Button1" OnClick="createNewJob" CausesValidation="False" OnDataBinding="createNewJob" UseSubmitBehavior="False" TabIndex="4" class="form-control btn btn-login" Text="Kaydet"></asp:Button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </asp:Content>

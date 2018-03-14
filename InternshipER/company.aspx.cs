@@ -37,6 +37,7 @@ namespace InternshipER
                 {
                     postReviewBox.Visible = false;
                     JobOrFav.Text = "Yeni İlan";
+                    videoTalk.Text = "Mülakat Daveti";
                 }
             }
            
@@ -84,7 +85,7 @@ namespace InternshipER
             labelname6.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][4].ToString();
             labelname7.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][0].ToString();
             labelname8.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][1].ToString();
-
+            
 
         }
         protected int getCompanyId()
@@ -175,6 +176,11 @@ namespace InternshipER
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
             }
+        }
+
+        protected void CompanyVideoTalk(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
         }
 
 

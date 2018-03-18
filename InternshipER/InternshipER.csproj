@@ -199,6 +199,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="search.aspx" />
+    <Content Include="showTest.aspx" />
     <Content Include="Site.Master" />
     <Content Include="student.aspx" />
     <Content Include="studentRegister.aspx" />
@@ -266,6 +267,13 @@
     </Compile>
     <Compile Include="search.aspx.designer.cs">
       <DependentUpon>search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="showTest.aspx.cs">
+      <DependentUpon>showTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="showTest.aspx.designer.cs">
+      <DependentUpon>showTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

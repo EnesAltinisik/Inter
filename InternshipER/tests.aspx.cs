@@ -12,6 +12,7 @@ namespace InternshipER
 {
     public partial class tests : System.Web.UI.Page
     {
+        public static String test_no;
         protected void Page_Load(object sender, EventArgs e)
         {
             DataTable dt = Database.getTests(Session["id"].ToString());
@@ -34,9 +35,18 @@ namespace InternshipER
                 html.Append("<tr>");
                 for (int j=0; j< dt.Columns.Count; j++)
                 {
-                    html.Append("<td>");
-                    html.Append(dt.Rows[i][j]);
-                    html.Append("</td>");
+                    if (j == 0)
+                        test_no = dt.Rows[i][j].ToString();
+                    else
+                    {
+                        html.Append("<td>");
+                        html.Append("<a href = \"showTest?test_no=" + test_no + "\">");
+                        html.Append("<div style = \"height:100%;width:100%\">");
+                        html.Append(dt.Rows[i][j]);
+                        html.Append("</div>");
+                        html.Append("</a>");
+                        html.Append("</td>");
+                    }
                 }
                 html.Append("</tr>");
             }

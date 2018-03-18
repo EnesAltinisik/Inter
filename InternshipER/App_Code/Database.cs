@@ -789,7 +789,7 @@ namespace InternshipER.App_Code
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("select test_name,question_number,time from test where company_id=@companyId "))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select test_no,test_name,question_number,time from test where company_id=@companyId "))
                 {
                     using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
                     {
@@ -803,6 +803,28 @@ namespace InternshipER.App_Code
                             return dt;
                         }
                     }
+                }
+            }
+        }
+        public static String getTestContext(String test_no)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT html FROM test where test_no=@TestNo"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    
+                    cmd.Parameters.AddWithValue("@TestNo", int.Parse(test_no));
+                    con.Open();
+                    NpgsqlDataReader values = cmd.ExecuteReader();
+                    if (values.Read())
+                    {
+                        return values[0].ToString();
+
+                    }
+                    con.Close();
+                    return null;
                 }
             }
         }

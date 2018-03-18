@@ -202,6 +202,7 @@
     <Content Include="Site.Master" />
     <Content Include="student.aspx" />
     <Content Include="studentRegister.aspx" />
+    <Content Include="tests.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -293,6 +294,13 @@
     </Compile>
     <Compile Include="studentRegister.aspx.designer.cs">
       <DependentUpon>studentRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tests.aspx.cs">
+      <DependentUpon>tests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tests.aspx.designer.cs">
+      <DependentUpon>tests.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

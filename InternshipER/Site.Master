@@ -103,7 +103,8 @@
                     <ul class="category">
                         <li runat="server" id="favorilerMenu"><i class="fa fa-circle-thin" aria-hidden="true"></i><a href="favourite.aspx">Favoriler</a></li>
                         <li runat="server" id="jobReq"><i class="fa fa-circle-thin" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#basvuruModal">Başvurularım</a></li>
-                          <li runat="server" id="Li1"><i class="fa fa-circle-thin" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#basvuruModal">İlanlarım</a></li>
+                        <li runat="server" id="ilanlar"><i class="fa fa-circle-thin" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#basvuruModal">İlanlarım</a></li>
+                        <li runat="server" id="Li1"><i class="fa fa-circle-thin" aria-hidden="true"></i><a href="tests.aspx">Testler</a></li>
                     </ul>
                     <ul>
                         <li runat="server" id="ayarlarMenu"><i class="fa fa-cog" aria-hidden="true"></i>Ayarlar</li>

@@ -718,18 +718,19 @@ namespace InternshipER.App_Code
             }
 
         }
-        public static void saveTest(string companyId, String testName, int questionNumber, int testTime, List<List<String>> questions)
+        public static void saveTest(string companyId, String testName, int questionNumber, int testTime, List<List<String>> questions, String html)
         {
             int test_no;
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO test (company_id, test_name, question_number,time) VALUES(@Companyid, @Testname, @Questionnumber, @Testtime)"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO test (company_id, test_name, question_number,time,html) VALUES(@Companyid, @Testname, @Questionnumber, @Testtime,@Html)"))
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@Companyid", companyId);
                     cmd.Parameters.AddWithValue("@Testname", testName);
                     cmd.Parameters.AddWithValue("@Questionnumber", questionNumber);
                     cmd.Parameters.AddWithValue("@Testtime", testTime);
+                    cmd.Parameters.AddWithValue("@Html", html);
                     cmd.Connection = con;
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -783,6 +784,27 @@ namespace InternshipER.App_Code
                 }
             }
             return user_id;
+        }
+        public static DataTable getTests(String companyId)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select test_name,question_number,time from test where company_id=@companyId "))
+                {
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        cmd.Parameters.AddWithValue("@companyId", companyId);
+                        con.Open();
+                        sda.SelectCommand = cmd;
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
         }
     }
 }

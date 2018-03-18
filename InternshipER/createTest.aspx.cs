@@ -154,7 +154,7 @@ namespace InternshipER
             int testTime = int.Parse(time.Value);
             String testName = test_name.Value;
 
-            Database.saveTest(Session["id"].ToString(), testName, numberOfQuestion, testTime, questions);
+            Database.saveTest(Session["id"].ToString(), testName, numberOfQuestion, testTime, questions,htmlAddedQuestions);
         }
         protected void addNewQuestion(String type, String question, List<String> choices)
         {

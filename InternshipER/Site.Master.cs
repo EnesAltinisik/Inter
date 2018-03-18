@@ -13,25 +13,37 @@ namespace InternshipER
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if ((bool)Session["loginPage"])
+            try
             {
-                rightMenu.Visible = false;
-            }
-            else
-            {
-                rightMenu.Visible = true;
-            }
-            if (Session["id"]!=null)
-            {
-                if (Database.isStudent(Session["id"].ToString()))
+                if ((bool)Session["loginPage"])
                 {
-                    jobReq.Visible = true;
+                    rightMenu.Visible = false;
                 }
                 else
                 {
-                    jobReq.Visible = false;
+                    rightMenu.Visible = true;
+                }
+                if (Session["id"] != null)
+                {
+                    if (Database.isStudent(Session["id"].ToString()))
+                    {
+                        jobReq.Visible = true;
+                        favorilerMenu.Visible = true;
+                        ilanlar.Visible = false;
+                    }
+                    else
+                    {
+                        jobReq.Visible = false;
+                        favorilerMenu.Visible = false;
+                        ilanlar.Visible = true;
+                    }
                 }
             }
+            catch(Exception ex)
+            {
+                Response.Redirect("login.aspx");
+            }
+
             if (!this.IsPostBack)
             {
                 if (Session["id"] != null)

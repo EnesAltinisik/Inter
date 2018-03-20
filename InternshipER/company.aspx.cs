@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Npgsql;
+using System.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -75,8 +77,28 @@ namespace InternshipER
                 //Append the HTML string to Placeholder.
                 searchTable.Controls.Add(new LiteralControl { Text = html.ToString() });
             }
+
+
+            ///////////////////////// Row sayisini bul ve yorumlari getirmek icin kullan////////////////////
             Database.GetLastReviews(user_id.ToString());
-            if (Database.GetLastReviews(user_id.ToString()).ToString() != null)
+            String connectionString = ConfigurationManager.ConnectionStrings["internshiper"].ConnectionString;
+            NpgsqlConnection con = new NpgsqlConnection(connectionString);
+            int rowcount = 0;
+            using (con)
+            {
+                using (Npgsql.NpgsqlCommand cmd = new Npgsql.NpgsqlCommand("SELECT count(*) as total_row_count from review where target=@UserId"))
+                {
+                   NpgsqlParameter total_row = null;
+                    cmd.Parameters.AddWithValue("@UserId", user_id);
+                    cmd.Connection = con;
+                    cmd.Parameters.TryGetValue("@total_row_count",out total_row);
+                    rowcount=(int)total_row.Value;
+                    Console.Write(rowcount);
+                    con.Open();
+
+                }
+            }
+            if (Database.GetLastReviews(user_id.ToString()) != null)
             { 
             labelname1.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][3].ToString();
             labelname2.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][4].ToString();
@@ -88,6 +110,9 @@ namespace InternshipER
             labelname7.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][0].ToString();
             labelname8.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][1].ToString();
         }
+
+
+
 
         }
         protected int getCompanyId()

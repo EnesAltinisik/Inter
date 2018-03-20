@@ -17,7 +17,8 @@ namespace InternshipER
             int user_id = getCompanyId();
             getCompanyInfo(user_id);
             //Öğrenci için company sayfasında saklanacak objeler.
-            if (Session["id"] != null) {
+            if (Session["id"] != null)
+            {
                 if (Database.isStudent(Session["id"].ToString()))
                 {
                     if (Database.favouriteCheck(Session["id"].ToString(), Request.QueryString["UserId"]))
@@ -40,7 +41,7 @@ namespace InternshipER
                     videoTalk.Text = "Mülakat Daveti";
                 }
             }
-           
+
             if (!IsPostBack)
             {
                 getCompanyInfo(user_id);
@@ -75,7 +76,8 @@ namespace InternshipER
                 searchTable.Controls.Add(new LiteralControl { Text = html.ToString() });
             }
             Database.GetLastReviews(user_id.ToString());
-
+            if (Database.GetLastReviews(user_id.ToString()).ToString() != null)
+            { 
             labelname1.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][3].ToString();
             labelname2.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][4].ToString();
             labelname3.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][0].ToString();
@@ -85,7 +87,7 @@ namespace InternshipER
             labelname6.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][4].ToString();
             labelname7.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][0].ToString();
             labelname8.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][1].ToString();
-            
+        }
 
         }
         protected int getCompanyId()

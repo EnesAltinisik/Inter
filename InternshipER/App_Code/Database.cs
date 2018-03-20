@@ -718,6 +718,35 @@ namespace InternshipER.App_Code
             }
 
         }
+
+        public static DataTable GetLastReviewsStudent(String user_id)
+        {
+            DataTable dt = new DataTable();
+
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select date,reviewer,target, title, message, grade from review where target=@UserId ORDER BY date DESC LIMIT 2"))
+                {
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                    {
+                        List<string> infos = new List<string>();
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@UserId", user_id);
+                        cmd.Connection = con;
+                        con.Open();
+                        sda.SelectCommand = cmd;
+                        using (dt)
+                        {
+                            sda.Fill(dt);
+
+                        }
+                        return dt;
+                    }
+                }
+            }
+
+        }
+
         public static void saveTest(string companyId, String testName, int questionNumber, int testTime, List<List<String>> questions, String html)
         {
             int test_no;

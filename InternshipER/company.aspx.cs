@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using InternshipER.App_Code;
+using System.Data;
 
 namespace InternshipER
 {
@@ -41,11 +42,32 @@ namespace InternshipER
                     postReviewBox.Visible = false;
                     JobOrFav.Text = "Yeni İlan";
                     videoTalk.Text = "Mülakat Daveti";
+
                 }
             }
 
             if (!IsPostBack)
             {
+
+                DataSet ds = new DataSet();
+                DataTable dtFields = new DataTable();
+                dtFields.Columns.Add("Id", typeof(int));
+                dtFields.Columns.Add("FName", typeof(string));
+
+                //Populating a DataTable from database.
+                /* System.Data.DataTable dt = Database.GetUserInter(user_id+"");
+                 foreach (System.Data.DataRow row in dt.Rows)
+                 {
+                     dtFields.Rows.Add(row[0], row[1]);
+                 }
+                 */
+                dtFields.Rows.Add(9, "asd");
+                startInter.DataSource = dtFields;
+                startInter.DataTextField = "FName";
+                startInter.DataValueField = "Id";
+                startInter.DataBind();
+                startInter.Items.Insert(0, "Mülakat Baslat");
+
                 getCompanyInfo(user_id);
                 //Populating a DataTable from database.
                 System.Data.DataTable dt = Database.GetUserJob(user_id);
@@ -77,6 +99,18 @@ namespace InternshipER
                 //Append the HTML string to Placeholder.
                 searchTable.Controls.Add(new LiteralControl { Text = html.ToString() });
             }
+            Database.GetLastReviews(user_id.ToString());
+
+            labelname1.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][3].ToString();
+            labelname2.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][4].ToString();
+            labelname3.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][0].ToString();
+            labelname4.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][1].ToString();
+
+            labelname5.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][3].ToString();
+            labelname6.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][4].ToString();
+            labelname7.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][0].ToString();
+            labelname8.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][1].ToString();
+
 
 
             ///////////////////////// Row sayisini bul ve yorumlari getirmek icin kullan////////////////////
@@ -88,28 +122,28 @@ namespace InternshipER
             {
                 using (Npgsql.NpgsqlCommand cmd = new Npgsql.NpgsqlCommand("SELECT count(*) as total_row_count from review where target=@UserId"))
                 {
-                   NpgsqlParameter total_row = null;
+                    NpgsqlParameter total_row = null;
                     cmd.Parameters.AddWithValue("@UserId", user_id);
                     cmd.Connection = con;
-                    cmd.Parameters.TryGetValue("@total_row_count",out total_row);
-                    rowcount=(int)total_row.Value;
+                    cmd.Parameters.TryGetValue("@total_row_count", out total_row);
+                    rowcount = (int)total_row.Value;
                     Console.Write(rowcount);
                     con.Open();
 
                 }
             }
             if (Database.GetLastReviews(user_id.ToString()) != null)
-            { 
-            labelname1.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][3].ToString();
-            labelname2.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][4].ToString();
-            labelname3.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][0].ToString();
-            labelname4.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][1].ToString();
+            {
+                labelname1.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][3].ToString();
+                labelname2.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][4].ToString();
+                labelname3.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][0].ToString();
+                labelname4.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][1].ToString();
 
-            labelname5.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][3].ToString();
-            labelname6.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][4].ToString();
-            labelname7.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][0].ToString();
-            labelname8.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][1].ToString();
-        }
+                labelname5.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][3].ToString();
+                labelname6.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][4].ToString();
+                labelname7.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][0].ToString();
+                labelname8.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][1].ToString();
+            }
 
 
 
@@ -141,7 +175,7 @@ namespace InternshipER
         }
         protected void getCompanyInfo(int user_id)
         {
-            
+
             //mkutlu düzeltme gerekebilir. 
             List<String> infos = Database.companyInfo(user_id);
             if (infos.Count > 1)
@@ -176,8 +210,9 @@ namespace InternshipER
         }
         protected void SaveReviewClick_Event(object sender, EventArgs e)
         {
+
             int rating = 0;
-            if (ratingsHidden == null || ratingsHidden.Value.Equals(""));
+            if (ratingsHidden == null || ratingsHidden.Value.Equals("")) ;
             else
                 rating = int.Parse(ratingsHidden.Value);
             Database.saveEvaluation(Session["id"].ToString(), Request.QueryString["UserId"], reviewTitle.Value, newReview.Value, rating, "");
@@ -207,7 +242,32 @@ namespace InternshipER
 
         protected void CompanyVideoTalk(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+            if (Database.isStudent(Session["id"].ToString()))
+            {
+                Response.Write("<script>alert('Kayıt Başarısız! Bilgileri kontrol ediniz.')</script>");
+                Database.organizeFavourite(Session["id"].ToString(), Request.QueryString["UserId"], flag);
+                Response.Redirect(Request.RawUrl);
+            }
+            else
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+        }
+        protected void startInterview(object sender, EventArgs e)
+        {
+            if (Database.isStudent(Session["id"].ToString()))
+            {
+                Response.Write("<script>alert('Kayıt Başarısız! Bilgileri kontrol ediniz.')</script>");
+                Database.organizeFavourite(Session["id"].ToString(), Request.QueryString["UserId"], flag);
+                Response.Redirect(Request.RawUrl);
+                return;
+            }
+
+            string student_id = startInter.SelectedValue + "";
+            string baglantı = "https://appr.tc/r/" + new Random().Next(1, 10000000);
+            string mesaj = "Mülakat linkiniz: " + baglantı;
+            Database.createMessage(student_id, getCompanyId() + "", mesaj);
+            Page.ClientScript.RegisterStartupScript(
+            this.GetType(), "OpenWindow", "window.open('" + baglantı + "','_newtab');", true);
+
         }
 
 

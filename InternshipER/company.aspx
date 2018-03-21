@@ -157,6 +157,11 @@
                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                             <asp:LinkButton ID="videoTalk" runat="server" OnClick="CompanyVideoTalk" causesvalidation="False" ondatabinding="CompanyVideoTalk" usesubmitbehavior="False"></asp:LinkButton>                                        
                                         </div>
+                                     <div class="download-resume">
+                                         <asp:DropDownList ID="startInter" runat="server"  Enabled="true"  Width="240px"  OnSelectedIndexChanged="startInterview" AutoPostBack="true"> </asp:DropDownList>
+                                     </div>
+
+                                    
                                     <div>
                                         <br />
                                         <span class="title-links">Sosyal Platformlar</span>
@@ -264,9 +269,9 @@
         </div>
     </div>
     <script type="text/javascript">
-    function openModal() {
-        $('#myModal2').modal('show');
-    }
+        function openModal() {
+            $('#myModal2').modal('show');
+        }
 </script>
     <script src="Scripts/WebForms/Company.js"></script>
     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

@@ -41,7 +41,6 @@ namespace InternshipER
                 {
                     postReviewBox.Visible = false;
                     JobOrFav.Text = "Yeni İlan";
-                    videoTalk.Text = "Mülakat Daveti";
 
                 }
             }
@@ -58,13 +57,30 @@ namespace InternshipER
                  System.Data.DataTable dt = Database.GetUserInter(user_id+"");
                  foreach (System.Data.DataRow row in dt.Rows)
                  {
-                     dtFields.Rows.Add(row[0], row[1]);
+                     dtFields.Rows.Add(row[1], row[0]);
                  }
                 startInter.DataSource = dtFields;
                 startInter.DataTextField = "FName";
                 startInter.DataValueField = "Id";
                 startInter.DataBind();
                 startInter.Items.Insert(0, "Mülakat Baslat");
+
+                DataSet ds1 = new DataSet();
+                DataTable dtFields1 = new DataTable();
+                dtFields1.Columns.Add("Id", typeof(int));
+                dtFields1.Columns.Add("FName", typeof(string));
+
+                //Populating a DataTable from database.
+                dt = Database.GetAllUserInter(user_id + "");
+                foreach (System.Data.DataRow row in dt.Rows)
+                {
+                    dtFields1.Rows.Add(row[0], row[1]);
+                }
+                callInter.DataSource = dtFields1;
+                callInter.DataTextField = "FName";
+                callInter.DataValueField = "Id";
+                callInter.DataBind();
+                callInter.Items.Insert(0, "Mülakata Çağır");
 
                 getCompanyInfo(user_id);
                 //Populating a DataTable from database.
@@ -238,16 +254,24 @@ namespace InternshipER
             }
         }
 
-        protected void CompanyVideoTalk(object sender, EventArgs e)
+        protected void callInterView(object sender, EventArgs e)
         {
             if (Database.isStudent(Session["id"].ToString()))
             {
                 Response.Write("<script>alert('Kayıt Başarısız! Bilgileri kontrol ediniz.')</script>");
                 Database.organizeFavourite(Session["id"].ToString(), Request.QueryString["UserId"], flag);
                 Response.Redirect(Request.RawUrl);
+                return;
             }
-            else
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+            
+            string student_id = callInter.SelectedValue + "";
+            if (startInter.SelectedValue.Equals("0"))
+                return;
+            string mesaj = mülakatDate.Value + " Tarihinde video mülakatınız vardır.  ";
+            JobOrFav.Text = mesaj + student_id;
+            Database.createMessage(student_id, getCompanyId() + "", mesaj);
+            Database.createInterview(student_id, getCompanyId() + "");
+
         }
         protected void startInterview(object sender, EventArgs e)
         {

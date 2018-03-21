@@ -211,13 +211,22 @@ namespace InternshipER {
         protected global::System.Web.UI.WebControls.LinkButton JobOrFav;
         
         /// <summary>
-        /// videoTalk denetimi.
+        /// callInter denetimi.
         /// </summary>
         /// <remarks>
         /// Otomatik üretilmiş alan.
         /// Değiştirmek için, alan bildirimini tasarımcı dosyasından arka plan kod dosyasına taşıyın.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton videoTalk;
+        protected global::System.Web.UI.WebControls.DropDownList callInter;
+        
+        /// <summary>
+        /// mülakatDate denetimi.
+        /// </summary>
+        /// <remarks>
+        /// Otomatik üretilmiş alan.
+        /// Değiştirmek için, alan bildirimini tasarımcı dosyasından arka plan kod dosyasına taşıyın.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText mülakatDate;
         
         /// <summary>
         /// startInter denetimi.

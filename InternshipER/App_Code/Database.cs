@@ -153,7 +153,45 @@ namespace InternshipER.App_Code
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("select user_id, stud from interview inner join  student_details on student_details.name=stud and comp like '" + user + "';"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select student_details.name, stud from interview  inner join  student_details on student_details.user_id=stud and comp like '" + user + "';"))
+                {
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        con.Open();
+                        sda.SelectCommand = cmd;
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        public static void createInterview(string stud, string comp)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO interview (comp, stud) VALUES(@Username, @Password)"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Username", comp);
+                    cmd.Parameters.AddWithValue("@Password", stud);
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+        public static DataTable GetAllUserInter(string user)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select job_student.user_id, name from student_details inner join job_student on student_details.user_id = job_student.user_id"))
                 {
                     using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
                     {

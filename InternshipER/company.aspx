@@ -154,11 +154,12 @@
                                             <asp:LinkButton ID="JobOrFav" runat="server" OnClick="FavouritesClick_Event" causesvalidation="False" ondatabinding="FavouritesClick_Event" usesubmitbehavior="False"></asp:LinkButton>                                        
                                         </div>
                                          <div class="download-resume">
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                            <asp:LinkButton ID="videoTalk" runat="server" OnClick="CompanyVideoTalk" causesvalidation="False" ondatabinding="CompanyVideoTalk" usesubmitbehavior="False"></asp:LinkButton>                                        
-                                        </div>
+                                         <asp:DropDownList ID="callInter" runat="server"  Enabled="true"   OnSelectedIndexChanged="callInterView" AutoPostBack="true"> </asp:DropDownList>
+                                          <label for="usr">Mülakat Tarihi:</label>
+                                        <input type="text" value="" runat="server" class="form-control" id="mülakatDate">  
+                                         </div>
                                      <div class="download-resume">
-                                         <asp:DropDownList ID="startInter" runat="server"  Enabled="true"  Width="240px"  OnSelectedIndexChanged="startInterview" AutoPostBack="true"> </asp:DropDownList>
+                                         <asp:DropDownList ID="startInter" runat="server"  Enabled="true"   OnSelectedIndexChanged="startInterview" AutoPostBack="true"> </asp:DropDownList>
                                      </div>
 
                                     

@@ -113,6 +113,16 @@ namespace InternshipER
                 searchTable.Controls.Add(new LiteralControl { Text = html.ToString() });
             }
             Database.GetLastReviews(user_id.ToString());
+            labelname1.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][3].ToString();
+            labelname2.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][4].ToString();
+            labelname3.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][0].ToString();
+            labelname4.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][1].ToString();
+
+            labelname5.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][3].ToString();
+            labelname6.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][4].ToString();
+            labelname7.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][0].ToString();
+            labelname8.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][1].ToString();
+
 
         }
         protected int getCompanyId()
@@ -235,16 +245,7 @@ namespace InternshipER
                     JobOrFav.Text = "Yeni İlan";
                     videoTalk.Text = "Mülakat Daveti";
                 }
-            labelname1.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][3].ToString();
-            labelname2.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][4].ToString();
-            labelname3.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][0].ToString();
-            labelname4.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][1].ToString();
-
-            labelname5.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][3].ToString();
-            labelname6.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][4].ToString();
-            labelname7.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][0].ToString();
-            labelname8.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][1].ToString();
-            
+           
 
         protected void SaveReviewClick_Event(object sender, EventArgs e)
         {

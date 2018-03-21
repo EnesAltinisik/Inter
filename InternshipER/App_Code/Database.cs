@@ -236,7 +236,7 @@ namespace InternshipER.App_Code
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("select kime, kimden, mesaj where kime='" + user + "';"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select kime, kimden, mesaj from message where kime='" + user + "';"))
                 {
                     using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
                     {
@@ -302,8 +302,8 @@ namespace InternshipER.App_Code
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@Username", kime);
-                    cmd.Parameters.AddWithValue("@Password", kimden);
-                    cmd.Parameters.AddWithValue("@Email", mesaj);
+                    cmd.Parameters.AddWithValue("@Password", mesaj);
+                    cmd.Parameters.AddWithValue("@Email",kimden );
                     cmd.Connection = con;
                     con.Open();
                     cmd.ExecuteNonQuery();

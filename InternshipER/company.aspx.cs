@@ -55,13 +55,11 @@ namespace InternshipER
                 dtFields.Columns.Add("FName", typeof(string));
 
                 //Populating a DataTable from database.
-                /* System.Data.DataTable dt = Database.GetUserInter(user_id+"");
+                 System.Data.DataTable dt = Database.GetUserInter(user_id+"");
                  foreach (System.Data.DataRow row in dt.Rows)
                  {
                      dtFields.Rows.Add(row[0], row[1]);
                  }
-                 */
-                dtFields.Rows.Add(9, "asd");
                 startInter.DataSource = dtFields;
                 startInter.DataTextField = "FName";
                 startInter.DataValueField = "Id";
@@ -70,7 +68,7 @@ namespace InternshipER
 
                 getCompanyInfo(user_id);
                 //Populating a DataTable from database.
-                System.Data.DataTable dt = Database.GetUserJob(user_id);
+                System.Data.DataTable dt1 = Database.GetUserJob(user_id);
 
                 //Building an HTML string.
                 StringBuilder html = new StringBuilder();
@@ -78,10 +76,10 @@ namespace InternshipER
 
 
                 //Building the Data rows.
-                foreach (System.Data.DataRow row in dt.Rows)
+                foreach (System.Data.DataRow row in dt1.Rows)
                 {
                     html.Append("<tr>");
-                    foreach (System.Data.DataColumn column in dt.Columns)
+                    foreach (System.Data.DataColumn column in dt1.Columns)
                     {
                         html.Append("<td>");
                         html.Append(row[column.ColumnName]);
@@ -145,7 +143,7 @@ namespace InternshipER
                 labelname8.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][1].ToString();
             }
 
-
+    
 
 
         }
@@ -262,6 +260,8 @@ namespace InternshipER
             }
 
             string student_id = startInter.SelectedValue + "";
+            if (startInter.SelectedValue.Equals("0"))
+                return;
             string baglantı = "https://appr.tc/r/" + new Random().Next(1, 10000000);
             string mesaj = "Mülakat linkiniz: " + baglantı;
             Database.createMessage(student_id, getCompanyId() + "", mesaj);

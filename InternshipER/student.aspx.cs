@@ -12,12 +12,31 @@ namespace InternshipER
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string user_id=null;
             if (!IsPostBack)
             {
-                string user_id = getUsirId();
+                user_id = getUsirId();
                 setStudentInfo(user_id);
             }
-            
+
+            setStudentInfo(user_id);
+
+            Database.GetLastReviewsStudent(user_id);
+
+
+            if (Database.GetLastReviewsStudent(user_id).ToString() != null)
+            {
+                labelname1.Text = Database.GetLastReviewsStudent(user_id).Rows[0][3].ToString();
+                labelname2.Text = Database.GetLastReviewsStudent(user_id).Rows[0][4].ToString();
+                labelname3.Text = Database.GetLastReviewsStudent(user_id).Rows[0][0].ToString();
+                labelname4.Text = Database.GetLastReviewsStudent(user_id).Rows[0][1].ToString();
+
+                labelname5.Text = Database.GetLastReviewsStudent(user_id).Rows[1][3].ToString();
+                labelname6.Text = Database.GetLastReviewsStudent(user_id).Rows[1][4].ToString();
+                labelname7.Text = Database.GetLastReviewsStudent(user_id).Rows[1][0].ToString();
+                labelname8.Text = Database.GetLastReviewsStudent(user_id).Rows[1][1].ToString();
+            }
+
         }
         protected string getUsirId()
         {
@@ -69,6 +88,7 @@ namespace InternshipER
             studentSchoolEdit.Value = infos[9];
 
         }
+
         protected void updateStudentProfile(object sender, EventArgs e)
         {
             string user_id = getUsirId();

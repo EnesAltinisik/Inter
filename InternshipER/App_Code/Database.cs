@@ -62,7 +62,7 @@ namespace InternshipER.App_Code
                     }
                 }
             }
-        }      
+        }
         internal static DataTable GetJobsAttendees(String jobId)
         {
             using (NpgsqlConnection con = connect())
@@ -118,7 +118,7 @@ namespace InternshipER.App_Code
                         sda.SelectCommand = cmd;
                         using (DataTable dt = new DataTable())
                         {
-                           
+
                             sda.Fill(dt);
                             return dt;
                         }
@@ -132,6 +132,66 @@ namespace InternshipER.App_Code
             using (NpgsqlConnection con = connect())
             {
                 using (NpgsqlCommand cmd = new NpgsqlCommand("select user_id, name, email, school, department from student_details"))
+                {
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        con.Open();
+                        sda.SelectCommand = cmd;
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        public static DataTable GetUserInter(string user)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select student_details.name, stud from interview  inner join  student_details on student_details.user_id=stud and comp like '" + user + "';"))
+                {
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        con.Open();
+                        sda.SelectCommand = cmd;
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        public static void createInterview(string stud, string comp)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO interview (comp, stud) VALUES(@Username, @Password)"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Username", comp);
+                    cmd.Parameters.AddWithValue("@Password", stud);
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+        public static DataTable GetAllUserInter(string user)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select job_student.user_id, name from student_details inner join job_student on student_details.user_id = job_student.user_id"))
                 {
                     using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
                     {
@@ -214,7 +274,7 @@ namespace InternshipER.App_Code
         {
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("select message.from, message.message from message where message.to='" + user+"';"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select kime, kimden, mesaj from message where kime='" + user + "';"))
                 {
                     using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
                     {
@@ -271,6 +331,23 @@ namespace InternshipER.App_Code
                 }
             }
 
+        }
+        public static void createMessage(string kime, string kimden, string mesaj)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO message (kime, kimden, mesaj) VALUES(@Username, @Email, @Password)"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Username", kime);
+                    cmd.Parameters.AddWithValue("@Password", mesaj);
+                    cmd.Parameters.AddWithValue("@Email",kimden );
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
         }
         public static void registerStudent(string studentName, String username, String password, String email)
         {
@@ -398,13 +475,13 @@ namespace InternshipER.App_Code
                     NpgsqlDataReader values = cmd.ExecuteReader();
                     if (values.Read())
                     {
-                            return values[i].ToString();
+                        return values[i].ToString();
 
                     }
                     con.Close();
                     return null;
                 }
-             }
+            }
         }
         /*public static List<string> companyLocation()
         {
@@ -605,7 +682,7 @@ namespace InternshipER.App_Code
                 }
             }
         }
-        internal static void saveEvaluation(String reviewer,String target,String title, String message, int rate, String jobId)
+        internal static void saveEvaluation(String reviewer, String target, String title, String message, int rate, String jobId)
         {
             using (NpgsqlConnection con = connect())
             {
@@ -669,32 +746,32 @@ namespace InternshipER.App_Code
                     }
                 }
             }
-                using (NpgsqlConnection con = connect())
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select date,user_id, job_title, description,location from jobs ORDER BY date DESC LIMIT 10"))
                 {
-                    using (NpgsqlCommand cmd = new NpgsqlCommand("select date,user_id, job_title, description,location from jobs ORDER BY date DESC LIMIT 10"))
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
                     {
-                        using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                        cmd.Connection = con;
+                        con.Open();
+                        sda.SelectCommand = cmd;
+                        using (dt2)
                         {
-                            cmd.Connection = con;
-                            con.Open();
-                            sda.SelectCommand = cmd;
-                            using (dt2)
-                            {
-                                sda.Fill(dt2);
+                            sda.Fill(dt2);
 
-                            }
                         }
                     }
                 }
-                tableList[0] = dt;
-                tableList[1] = dt2;
-                return tableList;
-            
+            }
+            tableList[0] = dt;
+            tableList[1] = dt2;
+            return tableList;
+
         }
         public static DataTable GetLastReviews(String user_id)
         {
             DataTable dt = new DataTable();
-          
+
             using (NpgsqlConnection con = connect())
             {
                 using (NpgsqlCommand cmd = new NpgsqlCommand("select date,reviewer,target, title, message, grade from review where target=@UserId ORDER BY date DESC LIMIT 2"))
@@ -707,29 +784,59 @@ namespace InternshipER.App_Code
                         cmd.Connection = con;
                         con.Open();
                         sda.SelectCommand = cmd;
-                         using (dt)
-                         {
-                             sda.Fill(dt);
+                        using (dt)
+                        {
+                            sda.Fill(dt);
 
-                         }
+                        }
                         return dt;
                     }
                 }
             }
 
         }
-        public static void saveTest(string companyId, String testName, int questionNumber, int testTime, List<List<String>> questions)
+
+        public static DataTable GetLastReviewsStudent(String user_id)
+        {
+            DataTable dt = new DataTable();
+
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select date,reviewer,target, title, message, grade from review where target=@UserId ORDER BY date DESC LIMIT 2"))
+                {
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                    {
+                        List<string> infos = new List<string>();
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@UserId", user_id);
+                        cmd.Connection = con;
+                        con.Open();
+                        sda.SelectCommand = cmd;
+                        using (dt)
+                        {
+                            sda.Fill(dt);
+
+                        }
+                        return dt;
+                    }
+                }
+            }
+
+        }
+
+        public static void saveTest(string companyId, String testName, int questionNumber, int testTime, List<List<String>> questions, String html)
         {
             int test_no;
             using (NpgsqlConnection con = connect())
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO test (company_id, test_name, question_number,time) VALUES(@Companyid, @Testname, @Questionnumber, @Testtime)"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO test (company_id, test_name, question_number,time,html) VALUES(@Companyid, @Testname, @Questionnumber, @Testtime,@Html)"))
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@Companyid", companyId);
                     cmd.Parameters.AddWithValue("@Testname", testName);
                     cmd.Parameters.AddWithValue("@Questionnumber", questionNumber);
                     cmd.Parameters.AddWithValue("@Testtime", testTime);
+                    cmd.Parameters.AddWithValue("@Html", html);
                     cmd.Connection = con;
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -737,8 +844,8 @@ namespace InternshipER.App_Code
                 }
             }
 
-            test_no = getTestNo(companyId,testName);
-            for(int i = 0; i < questions.Count; i++)
+            test_no = getTestNo(companyId, testName);
+            for (int i = 0; i < questions.Count; i++)
             {
                 String test_id = test_no.ToString();
                 int no = int.Parse(questions[i][0]);
@@ -783,6 +890,49 @@ namespace InternshipER.App_Code
                 }
             }
             return user_id;
+        }
+        public static DataTable getTests(String companyId)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("select test_no,test_name,question_number,time from test where company_id=@companyId "))
+                {
+                    using (NpgsqlDataAdapter sda = new NpgsqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        cmd.Parameters.AddWithValue("@companyId", companyId);
+                        con.Open();
+                        sda.SelectCommand = cmd;
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+        }
+        public static String getTestContext(String test_no)
+        {
+            using (NpgsqlConnection con = connect())
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT html FROM test where test_no=@TestNo"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+
+                    cmd.Parameters.AddWithValue("@TestNo", int.Parse(test_no));
+                    con.Open();
+                    NpgsqlDataReader values = cmd.ExecuteReader();
+                    if (values.Read())
+                    {
+                        return values[0].ToString();
+
+                    }
+                    con.Close();
+                    return null;
+                }
+            }
         }
     }
 }

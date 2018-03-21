@@ -20,8 +20,7 @@ namespace InternshipER
             int user_id = getCompanyId();
             getCompanyInfo(user_id);
             //Öğrenci için company sayfasında saklanacak objeler.
-            if (Session["id"] != null)
-            {
+            if (Session["id"] != null) {
                 if (Database.isStudent(Session["id"].ToString()))
                 {
                     if (Database.favouriteCheck(Session["id"].ToString(), Request.QueryString["UserId"]))
@@ -41,7 +40,7 @@ namespace InternshipER
                 {
                     postReviewBox.Visible = false;
                     JobOrFav.Text = "Yeni İlan";
-
+                    videoTalk.Text = "Mülakat Daveti";
                 }
             }
 
@@ -115,53 +114,6 @@ namespace InternshipER
             }
             Database.GetLastReviews(user_id.ToString());
 
-            labelname1.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][3].ToString();
-            labelname2.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][4].ToString();
-            labelname3.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][0].ToString();
-            labelname4.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][1].ToString();
-
-            labelname5.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][3].ToString();
-            labelname6.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][4].ToString();
-            labelname7.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][0].ToString();
-            labelname8.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][1].ToString();
-
-
-
-            ///////////////////////// Row sayisini bul ve yorumlari getirmek icin kullan////////////////////
-            Database.GetLastReviews(user_id.ToString());
-            String connectionString = ConfigurationManager.ConnectionStrings["internshiper"].ConnectionString;
-            NpgsqlConnection con = new NpgsqlConnection(connectionString);
-            int rowcount = 0;
-            using (con)
-            {
-                using (Npgsql.NpgsqlCommand cmd = new Npgsql.NpgsqlCommand("SELECT count(*) as total_row_count from review where target=@UserId"))
-                {
-                    NpgsqlParameter total_row = null;
-                    cmd.Parameters.AddWithValue("@UserId", user_id);
-                    cmd.Connection = con;
-                    cmd.Parameters.TryGetValue("@total_row_count", out total_row);
-                    rowcount = (int)total_row.Value;
-                    Console.Write(rowcount);
-                    con.Open();
-
-                }
-            }
-            if (Database.GetLastReviews(user_id.ToString()) != null)
-            {
-                labelname1.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][3].ToString();
-                labelname2.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][4].ToString();
-                labelname3.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][0].ToString();
-                labelname4.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][1].ToString();
-
-                labelname5.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][3].ToString();
-                labelname6.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][4].ToString();
-                labelname7.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][0].ToString();
-                labelname8.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][1].ToString();
-            }
-
-    
-
-
         }
         protected int getCompanyId()
         {
@@ -224,9 +176,8 @@ namespace InternshipER
         }
         protected void SaveReviewClick_Event(object sender, EventArgs e)
         {
-
             int rating = 0;
-            if (ratingsHidden == null || ratingsHidden.Value.Equals("")) ;
+            if (ratingsHidden == null || ratingsHidden.Value.Equals(""));
             else
                 rating = int.Parse(ratingsHidden.Value);
             Database.saveEvaluation(Session["id"].ToString(), Request.QueryString["UserId"], reviewTitle.Value, newReview.Value, rating, "");
@@ -254,46 +205,71 @@ namespace InternshipER
             }
         }
 
-        protected void callInterView(object sender, EventArgs e)
+        protected void CompanyVideoTalk(object sender, EventArgs e)
         {
-            if (Database.isStudent(Session["id"].ToString()))
-            {
-                Response.Write("<script>alert('Kayıt Başarısız! Bilgileri kontrol ediniz.')</script>");
-                Database.organizeFavourite(Session["id"].ToString(), Request.QueryString["UserId"], flag);
-                Response.Redirect(Request.RawUrl);
-                return;
-            }
-            
-            string student_id = callInter.SelectedValue + "";
-            if (startInter.SelectedValue.Equals("0"))
-                return;
-            string mesaj = mülakatDate.Value + " Tarihinde video mülakatınız vardır.  ";
-            JobOrFav.Text = mesaj + student_id;
-            Database.createMessage(student_id, getCompanyId() + "", mesaj);
-            Database.createInterview(student_id, getCompanyId() + "");
-
-        }
-        protected void startInterview(object sender, EventArgs e)
-        {
-            if (Database.isStudent(Session["id"].ToString()))
-            {
-                Response.Write("<script>alert('Kayıt Başarısız! Bilgileri kontrol ediniz.')</script>");
-                Database.organizeFavourite(Session["id"].ToString(), Request.QueryString["UserId"], flag);
-                Response.Redirect(Request.RawUrl);
-                return;
-            }
-
-            string student_id = startInter.SelectedValue + "";
-            if (startInter.SelectedValue.Equals("0"))
-                return;
-            string baglantı = "https://appr.tc/r/" + new Random().Next(1, 10000000);
-            string mesaj = "Mülakat linkiniz: " + baglantı;
-            Database.createMessage(student_id, getCompanyId() + "", mesaj);
-            Page.ClientScript.RegisterStartupScript(
-            this.GetType(), "OpenWindow", "window.open('" + baglantı + "','_newtab');", true);
-
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
         }
 
 
     }
 }
+            if (Session["id"] != null) {
+                if (Database.isStudent(Session["id"].ToString()))
+                {
+                    if (Database.favouriteCheck(Session["id"].ToString(), Request.QueryString["UserId"]))
+                    {
+                        flag = true;
+                        JobOrFav.Text = "Favorilerden Çıkar";
+                    }
+                    else
+                    {
+                        flag = false;
+                        JobOrFav.Text = "Favorilere Ekle";
+                    }
+                    postReviewBox.Visible = true;
+
+                }
+                else // Şirket için görüntülenme ayarları
+                {
+                    postReviewBox.Visible = false;
+                    JobOrFav.Text = "Yeni İlan";
+                    videoTalk.Text = "Mülakat Daveti";
+                }
+            labelname1.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][3].ToString();
+            labelname2.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][4].ToString();
+            labelname3.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][0].ToString();
+            labelname4.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][1].ToString();
+
+            labelname5.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][3].ToString();
+            labelname6.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][4].ToString();
+            labelname7.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][0].ToString();
+            labelname8.Text = Database.GetLastReviews(user_id.ToString()).Rows[1][1].ToString();
+            
+
+        protected void SaveReviewClick_Event(object sender, EventArgs e)
+        {
+            int rating = 0;
+            if (ratingsHidden == null || ratingsHidden.Value.Equals(""));
+            else
+                rating = int.Parse(ratingsHidden.Value);
+            Database.saveEvaluation(Session["id"].ToString(), Request.QueryString["UserId"], reviewTitle.Value, newReview.Value, rating, "");
+        }
+        protected void FavouritesClick_Event(object sender, EventArgs e)
+        {
+            if (Database.isStudent(Session["id"].ToString()))
+            {
+                Response.Write("<script>alert('Kayıt Başarısız! Bilgileri kontrol ediniz.')</script>");
+                Database.organizeFavourite(Session["id"].ToString(), Request.QueryString["UserId"], flag);
+                Response.Redirect(Request.RawUrl);
+            }
+            else // Şirket için görüntülenme ayarları
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+            }
+        }
+
+        protected void CompanyVideoTalk(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+        }
+

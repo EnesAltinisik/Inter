@@ -24,17 +24,20 @@ namespace InternshipER
             Database.GetLastReviewsStudent(user_id);
 
 
-            if (Database.GetLastReviewsStudent(user_id).ToString() != null)
+            if (Database.GetLastReviewsStudent(user_id).Rows.Count !=0)
             {
                 labelname1.Text = Database.GetLastReviewsStudent(user_id).Rows[0][3].ToString();
                 labelname2.Text = Database.GetLastReviewsStudent(user_id).Rows[0][4].ToString();
                 labelname3.Text = Database.GetLastReviewsStudent(user_id).Rows[0][0].ToString();
                 labelname4.Text = Database.GetLastReviewsStudent(user_id).Rows[0][1].ToString();
 
-                labelname5.Text = Database.GetLastReviewsStudent(user_id).Rows[1][3].ToString();
-                labelname6.Text = Database.GetLastReviewsStudent(user_id).Rows[1][4].ToString();
-                labelname7.Text = Database.GetLastReviewsStudent(user_id).Rows[1][0].ToString();
-                labelname8.Text = Database.GetLastReviewsStudent(user_id).Rows[1][1].ToString();
+                if (Database.GetLastReviewsStudent(user_id).Rows.Count!= 1)
+                {
+                    labelname5.Text = Database.GetLastReviewsStudent(user_id).Rows[1][3].ToString();
+                    labelname6.Text = Database.GetLastReviewsStudent(user_id).Rows[1][4].ToString();
+                    labelname7.Text = Database.GetLastReviewsStudent(user_id).Rows[1][0].ToString();
+                    labelname8.Text = Database.GetLastReviewsStudent(user_id).Rows[1][1].ToString();
+                }
             }
 
         }

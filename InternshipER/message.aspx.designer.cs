@@ -10,7 +10,7 @@
 namespace InternshipER {
     
     
-    public partial class WebForm1 {
+    public partial class messageForm {
         
         /// <summary>
         /// messageTable denetimi.

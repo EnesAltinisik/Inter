@@ -88,30 +88,28 @@
                                             <div class="col-md-3 text-center">
                                                 <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
                                                 <div class="caption">
-                                                    <small>by<a href="#reviewer"> <asp:Label ID="labelname4" runat="server" Text="Label"></asp:Label></a></small>
+                                                    <small><a href="#reviewer"> <asp:Label ID="labelname4" runat="server" ></asp:Label></a></small>
                                                 </div>
 
                                             </div>
                                             <div class="col-md-9">
-                                                <h4><asp:Label ID="labelname1" runat="server" Text="Label"></asp:Label></h4>
-                                                <div class="ratebox text-center" data-id="0" data-rating="5"></div>
-                                                <p class="review-text"><asp:Label ID="labelname2" runat="server" Text="Label"></asp:Label></p>
-                                                <small class="review-date"><asp:Label ID="labelname3" runat="server" Text="Label"></asp:Label></small>
+                                                <h4><asp:Label ID="labelname1" runat="server" ></asp:Label></h4>
+                                                <p class="review-text"><asp:Label ID="labelname2" runat="server" ></asp:Label></p>
+                                                <small class="review-date"><asp:Label ID="labelname3" runat="server"></asp:Label></small>
                                             </div>
                                         </div>
                                         <div class="col-md-5 blockquote review-item">
                                             <div class="col-md-3 text-center">
                                                 <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
                                                 <div class="caption">
-                                                    <small>by<a href="#reviewer"> <asp:Label ID="labelname8" runat="server" Text="Label"></asp:Label></a></small>
+                                                    <small><a href="#reviewer"> <asp:Label ID="labelname8" runat="server" ></asp:Label></a></small>
                                                 </div>
 
                                             </div>
                                             <div class="col-md-9">
-                                                <h4><asp:Label ID="labelname5" runat="server" Text="Label"></asp:Label></h4>
-                                                <div class="ratebox text-center" data-id="0" data-rating="5"></div>
-                                                <p class="review-text"><asp:Label ID="labelname6" runat="server" Text="Label"></asp:Label></p>
-                                                <small class="review-date"><asp:Label ID="labelname7" runat="server" Text="Label"></asp:Label></small>
+                                                <h4><asp:Label ID="labelname5" runat="server" ></asp:Label></h4>
+                                                <p class="review-text"><asp:Label ID="labelname6" runat="server" ></asp:Label></p>
+                                                <small class="review-date"><asp:Label ID="labelname7" runat="server" ></asp:Label></small>
                                             </div>
                                         </div>
                                     </div>

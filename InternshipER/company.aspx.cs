@@ -53,11 +53,11 @@ namespace InternshipER
                 dtFields.Columns.Add("FName", typeof(string));
 
                 //Populating a DataTable from database.
-                 System.Data.DataTable dt = Database.GetUserInter(user_id+"");
-                 foreach (System.Data.DataRow row in dt.Rows)
-                 {
-                     dtFields.Rows.Add(row[1], row[0]);
-                 }
+                System.Data.DataTable dt = Database.GetUserInter(user_id + "");
+                foreach (System.Data.DataRow row in dt.Rows)
+                {
+                    dtFields.Rows.Add(row[1], row[0]);
+                }
                 startInter.DataSource = dtFields;
                 startInter.DataTextField = "FName";
                 startInter.DataValueField = "Id";
@@ -112,6 +112,30 @@ namespace InternshipER
                 //Append the HTML string to Placeholder.
                 searchTable.Controls.Add(new LiteralControl { Text = html.ToString() });
             }
+
+            ///////////////////////// Row sayisini bul ve yorumlari getirmek icin kullan////////////////////
+            Database.GetLastReviews(user_id.ToString());
+            if (Database.GetLastReviews(user_id.ToString()).ToString() != null)
+            {
+                String connectionString = ConfigurationManager.ConnectionStrings["internshiper"].ConnectionString;
+                NpgsqlConnection con = new NpgsqlConnection(connectionString);
+                int rowcount = 0;
+                using (con)
+                {
+                    using (Npgsql.NpgsqlCommand cmd = new Npgsql.NpgsqlCommand("SELECT count(*) as total_row_count from review where target=@UserId"))
+                    {
+                        NpgsqlParameter total_row = null;
+                        cmd.Parameters.AddWithValue("@UserId", user_id);
+                        cmd.Connection = con;
+                        cmd.Parameters.TryGetValue("@total_row_count", out total_row);
+                        rowcount = (int)total_row.Value;
+                        Console.Write(rowcount);
+                        con.Open();
+
+                    }
+                }
+            }
+
             Database.GetLastReviews(user_id.ToString());
             labelname1.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][3].ToString();
             labelname2.Text = Database.GetLastReviews(user_id.ToString()).Rows[0][4].ToString();
